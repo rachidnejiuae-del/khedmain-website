@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Khedmain — Trouvez un pro ou un engin, partout en Tunisie</title>
+<title>Khedmain — محترف أو معدّة، في كل تونس</title>
 <meta name="description" content="Khedmain : la place de marché des métiers, services et engins en Tunisie. Plombiers, électriciens, peintres, mécaniciens, camions, pelles, tracteurs… Publiez votre annonce ou trouvez un pro près de chez vous." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
 <style>
   /* ============================================================
      Khedmain — design tokens
@@ -370,6 +370,29 @@
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
   .skeleton{background:linear-gradient(90deg,var(--line-soft) 25%,#efece5 50%,var(--line-soft) 75%);background-size:200% 100%;animation:sk 1.2s infinite;}
   @keyframes sk{to{background-position:-200% 0;}}
+
+  /* ---------- Language toggle ---------- */
+  .lang-btn{
+    background:var(--card);border:1.5px solid var(--line);border-radius:999px;
+    padding:8px 13px;font-weight:700;font-size:13.5px;color:var(--ink-2);
+    min-width:44px;white-space:nowrap;font-family:var(--fb);
+  }
+  .lang-btn:hover{border-color:var(--blue);color:var(--blue);}
+
+  /* ---------- Arabic + RTL ---------- */
+  [dir="rtl"] body{font-family:'Tajawal',var(--fb);}
+  [dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4{font-family:'Tajawal',var(--fd);letter-spacing:0;}
+  [dir="rtl"] .brand,[dir="rtl"] .lcard-price,[dir="rtl"] .detail-price,[dir="rtl"] .step .n,[dir="rtl"] .pstep .pn,[dir="rtl"] .acct-num{font-family:'Space Grotesk','Tajawal',sans-serif;}
+  [dir="rtl"] .nav-links{margin-left:0;margin-right:6px;}
+  [dir="rtl"] .f-item{text-align:right;}
+  [dir="rtl"] .lcard-cat{left:auto;right:10px;}
+  [dir="rtl"] .lcard-veh{right:auto;left:10px;}
+  [dir="rtl"] .thumb button{right:auto;left:4px;}
+  [dir="rtl"] .search-inline{padding:6px 16px 6px 8px;}
+  [dir="rtl"] .sheet-in{right:auto;left:0;}
+  [dir="rtl"] .console .fld+.fld{border-left:none;border-right:1px solid var(--line-soft);}
+  [dir="rtl"] .acct-num{direction:ltr;}
+  @media(max-width:720px){ [dir="rtl"] .console .fld+.fld{border-right:none;} }
 </style>
 </head>
 <body>
@@ -381,11 +404,12 @@
       <span class="brand-mark">K</span><span>Khedma<span class="b2">in</span></span>
     </a>
     <nav class="nav-links">
-      <a href="#/browse">Parcourir</a>
-      <a href="#/browse?g=Véhicules%20%26%20Engins">Véhicules &amp; engins</a>
-      <a href="#/help">Comment ça marche</a>
+      <a href="#/browse" data-i18n="nav_browse">Parcourir</a>
+      <a href="#/browse?g=Véhicules%20%26%20Engins" data-i18n="nav_vehicles">Véhicules &amp; engins</a>
+      <a href="#/help" data-i18n="nav_how">Comment ça marche</a>
     </nav>
     <div class="nav-spacer"></div>
+    <button class="lang-btn" onclick="toggleLang()" aria-label="Langue / اللغة">FR</button>
     <div class="nav-right" id="navRight"></div>
     <button class="nav-toggle" aria-label="Menu" onclick="openSheet()">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -401,25 +425,25 @@
     <div class="foot-top">
       <div>
         <div class="brand"><span class="brand-mark">K</span><span>Khedma<span class="b2">in</span></span></div>
-        <p style="margin:0;max-width:320px;font-size:14px;">La place de marché des métiers, services et engins en Tunisie. Trouvez un pro près de chez vous, ou publiez votre annonce en quelques minutes.</p>
+        <p style="margin:0;max-width:320px;font-size:14px;" data-i18n="footer_tagline">La place de marché des métiers, services et engins en Tunisie. Trouvez un pro près de chez vous, ou publiez votre annonce en quelques minutes.</p>
       </div>
       <div>
-        <h5>Explorer</h5>
-        <a href="#/browse">Toutes les annonces</a>
-        <a href="#/browse?g=Véhicules%20%26%20Engins">Véhicules &amp; engins</a>
-        <a href="#/post">Publier une annonce</a>
-        <a href="#/help">Comment ça marche</a>
+        <h5 data-i18n="footer_explore">Explorer</h5>
+        <a href="#/browse" data-i18n="footer_all">Toutes les annonces</a>
+        <a href="#/browse?g=Véhicules%20%26%20Engins" data-i18n="nav_vehicles">Véhicules &amp; engins</a>
+        <a href="#/post" data-i18n="footer_post">Publier une annonce</a>
+        <a href="#/help" data-i18n="nav_how">Comment ça marche</a>
       </div>
       <div>
-        <h5>Contact &amp; aide</h5>
-        <a id="footWa" href="#" target="_blank">💬 Support WhatsApp</a>
-        <a href="#/activate">Activer mon abonnement</a>
-        <a href="#/conditions">Conditions &amp; sécurité</a>
+        <h5 data-i18n="footer_contact">Contact &amp; aide</h5>
+        <a id="footWa" href="#" target="_blank" data-i18n="footer_wa">💬 Support WhatsApp</a>
+        <a href="#/activate" data-i18n="footer_activate">Activer mon abonnement</a>
+        <a href="#/conditions" data-i18n="footer_conditions">Conditions &amp; sécurité</a>
       </div>
     </div>
     <div class="foot-bot">
-      <span>© <span id="yr"></span> Khedmain · Fait en Tunisie 🇹🇳</span>
-      <span>Khedmain met en relation — vérifiez toujours l'identité avant tout engagement.</span>
+      <span>© <span id="yr"></span> Khedmain · <span data-i18n="footer_made">Fait en Tunisie 🇹🇳</span></span>
+      <span data-i18n="footer_disclaimer">Khedmain met en relation — vérifiez toujours l'identité avant tout engagement.</span>
     </div>
   </div>
 </footer>
@@ -429,10 +453,11 @@
 <!-- Mobile sheet -->
 <div class="sheet" id="sheet" onclick="if(event.target===this)closeSheet()">
   <div class="sheet-in">
-    <a href="#/browse" onclick="closeSheet()">Parcourir</a>
-    <a href="#/browse?g=Véhicules%20%26%20Engins" onclick="closeSheet()">Véhicules &amp; engins</a>
-    <a href="#/help" onclick="closeSheet()">Comment ça marche</a>
-    <a href="#/activate" onclick="closeSheet()">Activer mon abonnement</a>
+    <button class="lang-btn" onclick="toggleLang()" style="align-self:flex-start;margin-bottom:6px">FR</button>
+    <a href="#/browse" onclick="closeSheet()" data-i18n="nav_browse">Parcourir</a>
+    <a href="#/browse?g=Véhicules%20%26%20Engins" onclick="closeSheet()" data-i18n="nav_vehicles">Véhicules &amp; engins</a>
+    <a href="#/help" onclick="closeSheet()" data-i18n="nav_how">Comment ça marche</a>
+    <a href="#/activate" onclick="closeSheet()" data-i18n="footer_activate">Activer mon abonnement</a>
     <div style="height:8px"></div>
     <div id="sheetAuth"></div>
   </div>
@@ -455,6 +480,282 @@ const CFG = {
   PRICE_MONTH: '15 DT',
   PRICE_YEAR:  '120 DT',
 };
+
+/* ---------- i18n (FR / AR) ----------------------------------------------- */
+let LANG = localStorage.getItem('kd_lang') || 'ar';
+const I18N = {
+  fr: {
+    meta_title:"Khedmain — Trouvez un pro ou un engin, partout en Tunisie",
+    meta_desc:"Khedmain : la place de marché des métiers, services et engins en Tunisie. Publiez votre annonce ou trouvez un pro près de chez vous.",
+    nav_browse:"Parcourir", nav_vehicles:"Véhicules & engins", nav_how:"Comment ça marche",
+    nav_myspace:"Mon espace", nav_logout:"Déconnexion", nav_publish:"+ Publier", nav_login:"Connexion",
+    sheet_admin:"🛠️ Administration", sheet_publish_full:"+ Publier une annonce", sheet_login_full:"Connexion / Inscription",
+    footer_tagline:"La place de marché des métiers, services et engins en Tunisie. Trouvez un pro près de chez vous, ou publiez votre annonce en quelques minutes.",
+    footer_explore:"Explorer", footer_all:"Toutes les annonces", footer_post:"Publier une annonce",
+    footer_contact:"Contact & aide", footer_wa:"💬 Support WhatsApp", footer_activate:"Activer mon abonnement",
+    footer_conditions:"Conditions & sécurité", footer_made:"Fait en Tunisie 🇹🇳",
+    footer_disclaimer:"Khedmain met en relation — vérifiez toujours l'identité avant tout engagement.",
+    wa_help:"Bonjour Khedmain, j'ai besoin d'aide.",
+    loading:"Chargement…", retry:"Réessayer",
+    server_waking:"⏳ Le serveur se réveille, un instant…",
+    err_network:"Connexion au serveur impossible. Vérifiez votre réseau.", err_prefix:"Erreur ",
+    contact_direct:"Contact direct", with_driver:"Avec chauffeur", sur_devis:"Sur devis", dt:"DT", logout_toast:"Déconnecté.",
+    home_eyebrow:"🇹🇳 100% Tunisie · ",
+    home_h1:`Un <span class="hl">pro</span> pour chaque khedma,<br/>un <span class="hl">engin</span> pour chaque chantier.`,
+    home_lede:"Plombiers, électriciens, peintres, mécaniciens… ou un pick-up, une pelle, une grue avec chauffeur. Trouvez, comparez, contactez directement.",
+    home_q_label:"Que cherchez-vous ?", home_q_ph:"Plombier, excavatrice, cours de maths…",
+    home_where:"Où ?", home_allcountry:"Tout le pays", home_search:"Rechercher",
+    home_cat_kicker:"Toutes les catégories", home_cat_title:"Des métiers aux gros engins",
+    home_cat_sub:"Tout ce qui se fait, se répare, se construit ou se transporte en Tunisie — au même endroit.",
+    home_recent_kicker:"Annonces récentes", home_recent_title:"Fraîchement publiées", see_all:"Voir tout →",
+    home_empty:"Aucune annonce active pour le moment. Soyez le premier à publier !",
+    home_load_err:"Impossible de charger les annonces pour le moment.", home_total_fallback:"place de marché tunisienne",
+    home_provider_kicker:"Vous offrez un service ?", home_provider_title:"Publiez, activez, décrochez des clients",
+    home_provider_sub:"Pas de commission sur vos contrats. Un abonnement simple par code prépayé rend votre annonce visible partout en Tunisie.",
+    home_s1_t:"Publiez votre annonce", home_s1_d:"Décrivez votre service ou votre engin, ajoutez vos photos et vos tarifs. C'est gratuit à créer.",
+    home_s2_t:"Activez par code prépayé", home_s2_d:"Payez par Flouci ou CCP, envoyez la preuve sur WhatsApp, recevez votre code et activez votre visibilité.",
+    home_s3_t:"Recevez les appels", home_s3_d:"Les clients vous contactent directement, par téléphone ou WhatsApp. Aucun intermédiaire.",
+    home_cta_publish:"Publier mon annonce",
+    crumb_home:"Accueil", crumb_browse:"Parcourir",
+    f_search:"Recherche", f_kw_ph:"Mot-clé…", reset:"Réinitialiser", f_gov:"Gouvernorat",
+    all_m:"Tous", all_f:"Toutes", f_cat:"Catégorie", filters:"☰ Filtres",
+    browse_all:"Toutes les annonces", browse_annonces:"Annonces",
+    browse_none:"Aucune annonce ne correspond. Essayez d'élargir votre recherche.",
+    browse_load_err:"Impossible de charger les annonces.",
+    detail_notvisible:"⏳ Cette annonce n'est pas encore visible publiquement — son abonnement n'est pas actif.",
+    detail_description:"Description", detail_nodesc:"Aucune description.",
+    verified_pill:"✅ Prestataire vérifié", provider_default:"Prestataire",
+    call_btn:"📞 Appeler", wa_btn:"💬 Contacter sur WhatsApp",
+    wa_listing_msg:"Bonjour, je vous contacte via Khedmain au sujet de : ",
+    detail_safety:"🔒 Pour votre sécurité : rencontrez-vous dans un lieu sûr, vérifiez le travail avant de payer, et ne versez jamais d'acompte important à l'avance.",
+    detail_notfound:"Annonce introuvable.", back_to_listings:"Retour aux annonces", detail_load_err:"Impossible de charger cette annonce.",
+    post_login_note:"Connectez-vous pour publier une annonce. C'est gratuit et rapide.",
+    post_title:"Publier une annonce", post_sub:"Décrivez ce que vous proposez. Vous pourrez l'activer par code prépayé juste après.",
+    choose_cat:"— Choisir une catégorie —", f_ad_title:"Titre de l'annonce", f_ad_title_hint:"— court et clair",
+    ph_ad_title:"Ex : Plombier — dépannage rapide 7j/7", f_desc:"Description",
+    ph_desc:"Détaillez vos prestations, votre expérience, vos zones d'intervention…",
+    choose:"— Choisir —", f_city:"Ville / Quartier", optional:"(optionnel)", ph_city:"Ex : La Marsa",
+    f_price:"Tarif", price_hint:"(vide = sur devis)", ph_price:"Ex : 40", f_unit:"Unité", f_rental:"Location",
+    with_driver_btn:"🧑‍✈️ Avec chauffeur / opérateur", without_driver_btn:"🔑 Sans chauffeur",
+    f_phone:"Téléphone de contact", f_photos:"Photos", photos_hint:"— vos réalisations, votre véhicule… (jusqu'à 6)",
+    drop_click:"Cliquez ou glissez vos photos ici", drop_formats:"JPG / PNG · redimensionnées automatiquement",
+    create_ad:"Créer mon annonce",
+    post_note:`Votre annonce sera enregistrée puis <strong>activée par code prépayé</strong> pour devenir visible. Prochaine étape après création : l'activation.`,
+    max_photos:"Maximum 6 photos.", img_fail:"Une image n'a pas pu être ajoutée.",
+    choose_cat_toast:"Choisissez une catégorie.", title_short:"Donnez un titre plus descriptif.",
+    choose_gov:"Choisissez un gouvernorat.", phone_invalid:"Numéro de téléphone invalide.",
+    publishing:"Publication…", ad_online:"Annonce publiée et en ligne ✅",
+    ad_created:"Annonce créée. Activez votre abonnement pour la rendre visible.",
+    act_title:"Activer mon abonnement", act_sub:"Rendez vos annonces visibles partout en Tunisie grâce à un code prépayé.",
+    act_active_prefix:"✅ Votre abonnement est actif jusqu'au", act_active_suffix:". Vos annonces sont visibles.",
+    act_have_code:"J'ai déjà un code", act_have_code_sub:"Entrez votre code d'activation pour mettre vos annonces en ligne immédiatement.",
+    activate_btn:"Activer", act_login_first:"Connectez-vous d'abord pour lier le code à votre compte.", login_arrow:"Se connecter →",
+    plan_month:"Mensuel", plan_year:"Annuel", plan_save:"2 mois offerts", act_no_code:"Je n'ai pas encore de code",
+    tab_ccp:"🏤 CCP / La Poste", flouci_num:"Numéro Flouci", official_account:"Khedmain — Compte officiel",
+    copy_num:"📋 Copier le numéro", ccp_account:"Compte CCP",
+    ccp_note:"🏤 Déposez des espèces dans n'importe quel bureau de poste avec ce numéro, ou faites un virement CCP. Gardez le reçu.",
+    ps1_t:"Payez le montant de votre plan", ps1_d:"Mensuel {m} ou annuel {y}, via Flouci ou CCP.",
+    ps2_t:"Envoyez la preuve sur WhatsApp", ps2_d:"Capture Flouci ou photo du reçu, avec votre numéro inscrit.",
+    ps3_t:"Recevez votre code", ps3_d:"Nous vérifions et vous envoyons votre code par WhatsApp, généralement en moins d'une heure.",
+    ps4_t:"Activez-le ci-dessus", ps4_d:"Entrez le code dans le champ en haut de cette page. Vos annonces passent en ligne aussitôt.",
+    send_proof:"💬 Envoyer la preuve", wa_proof_msg:"Bonjour Khedmain, voici ma preuve de paiement pour activer mon abonnement. Mon numéro inscrit : ",
+    copied:"✓ Copié", enter_code:"Entrez votre code.", activating:"Activation…", sub_activated_prefix:"Abonnement", sub_activated_suffix:"activé ✅",
+    login_title:"Connexion", register_title:"Créer un compte", login_sub:"Accédez à votre espace prestataire.",
+    register_sub:"Rejoignez Khedmain en une minute.", f_fullname:"Nom complet", ph_fullname:"Prénom Nom",
+    f_phone2:"Téléphone", f_password:"Mot de passe", login_btn:"Se connecter", register_btn:"Créer mon compte",
+    no_account:"Pas encore de compte ?", register_link:"S'inscrire", have_account:"Déjà inscrit ?", login_link:"Se connecter",
+    phone_invalid2:"Numéro invalide (format +216 XX XXX XXX).", pass_short:"Mot de passe trop court.", one_moment:"Un instant…",
+    welcome:"Bienvenue", enter_fullname:"Entrez votre nom complet.", account_created:"Compte créé ✅",
+    hello:"Bonjour,", dash_sub:"Gérez vos annonces et votre abonnement.", admin_btn:"🛠️ Administration", new_ad:"+ Nouvelle annonce",
+    sub_label:"Abonnement", active:"Actif", inactive:"Inactif", until:"Jusqu'au", online:"En ligne",
+    not_visible:"Vos annonces ne sont pas visibles.", activate_now:"Activer maintenant", extend:"Prolonger",
+    my_ads:"Mes annonces", online_visible:"En ligne et visibles", pending_activation:"En attente d'activation",
+    badge_online:"● En ligne", badge_pending:"⏳ En attente", view:"Voir",
+    dash_empty:"Vous n'avez pas encore d'annonce. Publiez-en une pour commencer.", dash_load_err:"Impossible de charger votre espace.",
+    confirm_delete:"Supprimer cette annonce ?", ad_deleted:"Annonce supprimée.",
+    admin_denied:"Accès réservé à l'administrateur.", admin_load:"Chargement de l'administration…",
+    admin_title:"Administration Khedmain", admin_sub:"Prestataires, annonces et codes prépayés.",
+    stat_providers:"Prestataires", stat_listings:"Annonces", stat_free_codes:"Codes libres", stat_used_codes:"Codes utilisés",
+    tab_providers:"👤 Prestataires", tab_listings:"📋 Annonces", tab_codes:"🎟️ Codes",
+    no_providers:"Aucun prestataire.", load_err:"Erreur de chargement.",
+    verified_chip:"✅ Vérifié", admin_chip:"Admin", suspended_chip:"Suspendu", subscribed:"Abonné", not_subscribed:"Non abonné",
+    remove_verif:"Retirer vérif.", verify_btn:"✔ Vérifier", revoke_sub:"Révoquer abo.", grant_month:"+1 mois",
+    reactivate:"Réactiver", suspend:"⛔ Suspendre", provider_updated:"Prestataire mis à jour.",
+    sub_revoked:"Abonnement révoqué.", sub_granted:"Abonnement accordé (+1 mois).",
+    disabled_chip:"Désactivée", disable:"⛔ Désactiver", no_ads:"Aucune annonce.", ad_updated:"Annonce mise à jour.",
+    gen_codes:"Générer des codes", f_plan:"Plan", f_qty:"Quantité", generate:"Générer",
+    free_codes:"Codes libres", plan_word:"Plan", no_free_codes:"Aucun code libre. Générez-en.", copy:"📋 Copier",
+    generating:"Génération…", codes_generated:"code(s) généré(s).",
+    help_title:"Comment ça marche", help_sub:"Khedmain met en relation les Tunisiens avec des pros et des engins, sans intermédiaire.",
+    help_s1_t:"Cherchez", help_s1_d:"Filtrez par catégorie, gouvernorat et mot-clé pour trouver un pro ou un engin près de vous.",
+    help_s2_t:"Comparez", help_s2_d:"Consultez les photos, les tarifs et les descriptions. Choisissez en toute confiance.",
+    help_s3_t:"Contactez", help_s3_d:"Appelez ou écrivez sur WhatsApp directement. Aucune commission, aucun frais côté client.",
+    help_prov_title:"Vous êtes prestataire ?",
+    help_prov_body:`Créez votre compte, publiez votre annonce avec photos et tarifs, puis activez votre visibilité par <strong>code prépayé</strong> (Flouci ou CCP). Une fois activée, votre annonce apparaît dans les recherches partout en Tunisie. Vous gardez 100% de vos revenus.`,
+    help_cta_publish:"Publier une annonce", help_cta_activate:"Activer par code",
+    cond_title:"Conditions & sécurité", cond_updated:"Dernière mise à jour :",
+    cond_body:`<strong>1. Rôle de Khedmain.</strong> Khedmain est une plateforme de mise en relation. Nous ne sommes ni partie aux prestations, ni employeur des prestataires. Les accords, prix et travaux se concluent directement entre le client et le prestataire.
+
+<strong>2. Responsabilité.</strong> Khedmain ne garantit pas la qualité, la légalité ou la sécurité des services proposés. Vérifiez toujours l'identité et les qualifications avant tout engagement.
+
+<strong>3. Sécurité.</strong> Rencontrez-vous dans un lieu sûr, ne versez pas d'acompte important à l'avance, et exigez un reçu. Signalez tout abus via WhatsApp.
+
+<strong>4. Abonnement.</strong> La visibilité d'une annonce est conditionnée à un abonnement actif, activé par code prépayé. Les codes sont personnels et à usage unique.
+
+<strong>5. Contenu des annonces.</strong> Le prestataire est seul responsable du contenu qu'il publie. Les annonces frauduleuses, illégales ou trompeuses sont supprimées.
+
+<strong>6. Données.</strong> Nous conservons les informations nécessaires au fonctionnement du service (compte, annonces, contacts). Vous pouvez demander la suppression de votre compte via WhatsApp.`,
+    cond_disclaimer:"Ce texte est un modèle de départ à faire relire selon la réglementation tunisienne avant le lancement public.",
+  },
+  ar: {
+    meta_title:"Khedmain — محترف أو معدّة، في كل تونس",
+    meta_desc:"Khedmain: منصّة المهن والخدمات والمعدّات في تونس. انشر إعلانك أو جد محترفًا قريبًا منك.",
+    nav_browse:"تصفّح", nav_vehicles:"مركبات ومعدّات", nav_how:"كيف يعمل",
+    nav_myspace:"مساحتي", nav_logout:"خروج", nav_publish:"+ أضف إعلان", nav_login:"دخول",
+    sheet_admin:"🛠️ الإدارة", sheet_publish_full:"+ أضف إعلان", sheet_login_full:"دخول / تسجيل",
+    footer_tagline:"منصّة المهن والخدمات والمعدّات في تونس. جد محترفًا قريبًا منك، أو انشر إعلانك في دقائق.",
+    footer_explore:"استكشف", footer_all:"كل الإعلانات", footer_post:"أضف إعلان",
+    footer_contact:"اتصال ومساعدة", footer_wa:"💬 دعم واتساب", footer_activate:"تفعيل اشتراكي",
+    footer_conditions:"الشروط والأمان", footer_made:"صُنع في تونس 🇹🇳",
+    footer_disclaimer:"Khedmain وسيط للتعارف — تحقّق دائمًا من الهوية قبل أيّ التزام.",
+    wa_help:"مرحبًا Khedmain، أحتاج إلى مساعدة.",
+    loading:"جارٍ التحميل…", retry:"إعادة المحاولة",
+    server_waking:"⏳ الخادم يستيقظ، لحظة…",
+    err_network:"تعذّر الاتصال بالخادم. تحقّق من اتصالك بالإنترنت.", err_prefix:"خطأ ",
+    contact_direct:"اتصال مباشر", with_driver:"مع سائق", sur_devis:"بالاتفاق", dt:"د.ت", logout_toast:"تم تسجيل الخروج.",
+    home_eyebrow:"🇹🇳 100% تونس · ",
+    home_h1:`<span class="hl">محترف</span> لكل خدمة،<br/><span class="hl">ومعدّة</span> لكل ورشة.`,
+    home_lede:"سبّاكون، كهربائيون، دهّانون، ميكانيكيون… أو بيك أب، حفّارة، رافعة مع سائق. ابحث، قارن، وتواصل مباشرة.",
+    home_q_label:"عمّ تبحث؟", home_q_ph:"سبّاك، حفّارة، دروس رياضيات…",
+    home_where:"أين؟", home_allcountry:"كامل البلاد", home_search:"ابحث",
+    home_cat_kicker:"كل الفئات", home_cat_title:"من الحِرَف إلى المعدّات الثقيلة",
+    home_cat_sub:"كل ما يُصنع أو يُصلَح أو يُبنى أو يُنقَل في تونس — في مكان واحد.",
+    home_recent_kicker:"أحدث الإعلانات", home_recent_title:"نُشرت حديثًا", see_all:"عرض الكل ←",
+    home_empty:"لا توجد إعلانات نشطة حاليًا. كن أول من ينشر!",
+    home_load_err:"تعذّر تحميل الإعلانات حاليًا.", home_total_fallback:"منصّة تونسية",
+    home_provider_kicker:"تقدّم خدمة؟", home_provider_title:"انشر، فعّل، واحصل على زبائن",
+    home_provider_sub:"بدون أيّ عمولة على عقودك. اشتراك بسيط بكود مسبق الدفع يجعل إعلانك ظاهرًا في كامل تونس.",
+    home_s1_t:"انشر إعلانك", home_s1_d:"صِف خدمتك أو معدّتك، أضف صورك وأسعارك. الإنشاء مجّاني.",
+    home_s2_t:"فعّل بكود مسبق الدفع", home_s2_d:"ادفع عبر Flouci أو البريد، أرسل الإثبات عبر واتساب، استلم كودك وفعّل ظهورك.",
+    home_s3_t:"استقبل المكالمات", home_s3_d:"يتواصل معك الزبائن مباشرة، هاتفيًا أو عبر واتساب. بدون وسيط.",
+    home_cta_publish:"انشر إعلانك",
+    crumb_home:"الرئيسية", crumb_browse:"تصفّح",
+    f_search:"بحث", f_kw_ph:"كلمة مفتاحية…", reset:"إعادة الضبط", f_gov:"الولاية",
+    all_m:"الكل", all_f:"الكل", f_cat:"الفئة", filters:"☰ فلاتر",
+    browse_all:"كل الإعلانات", browse_annonces:"إعلانات",
+    browse_none:"لا يوجد إعلان مطابق. جرّب توسيع بحثك.",
+    browse_load_err:"تعذّر تحميل الإعلانات.",
+    detail_notvisible:"⏳ هذا الإعلان غير ظاهر للعموم بعد — اشتراك صاحبه غير مفعّل.",
+    detail_description:"الوصف", detail_nodesc:"لا يوجد وصف.",
+    verified_pill:"✅ مزوّد موثّق", provider_default:"مزوّد الخدمة",
+    call_btn:"📞 اتصل", wa_btn:"💬 تواصل عبر واتساب",
+    wa_listing_msg:"مرحبًا، أتواصل معك عبر Khedmain بخصوص: ",
+    detail_safety:"🔒 من أجل سلامتك: قابِل الشخص في مكان آمن، تحقّق من العمل قبل الدفع، ولا تدفع عربونًا كبيرًا مقدّمًا أبدًا.",
+    detail_notfound:"الإعلان غير موجود.", back_to_listings:"العودة إلى الإعلانات", detail_load_err:"تعذّر تحميل هذا الإعلان.",
+    post_login_note:"سجّل الدخول لنشر إعلان. الأمر مجّاني وسريع.",
+    post_title:"أضف إعلان", post_sub:"صِف ما تقدّمه. يمكنك تفعيله بكود مسبق الدفع مباشرة بعد ذلك.",
+    choose_cat:"— اختر فئة —", f_ad_title:"عنوان الإعلان", f_ad_title_hint:"— قصير وواضح",
+    ph_ad_title:"مثال: سبّاك — تدخّل سريع 7/7", f_desc:"الوصف",
+    ph_desc:"فصّل خدماتك، خبرتك، ومناطق تدخّلك…",
+    choose:"— اختر —", f_city:"المدينة / الحي", optional:"(اختياري)", ph_city:"مثال: المرسى",
+    f_price:"السعر", price_hint:"(فارغ = بالاتفاق)", ph_price:"مثال: 40", f_unit:"الوحدة", f_rental:"الكراء",
+    with_driver_btn:"🧑‍✈️ مع سائق / مشغّل", without_driver_btn:"🔑 بدون سائق",
+    f_phone:"هاتف الاتصال", f_photos:"صور", photos_hint:"— أعمالك، مركبتك… (حتى 6 صور)",
+    drop_click:"انقر أو اسحب صورك هنا", drop_formats:"JPG / PNG · تُصغَّر تلقائيًا",
+    create_ad:"أنشئ الإعلان",
+    post_note:`سيُحفَظ إعلانك ثم <strong>يُفعَّل بكود مسبق الدفع</strong> ليصبح ظاهرًا. الخطوة التالية بعد الإنشاء: التفعيل.`,
+    max_photos:"6 صور كحدّ أقصى.", img_fail:"تعذّرت إضافة إحدى الصور.",
+    choose_cat_toast:"اختر فئة.", title_short:"اكتب عنوانًا أوضح.",
+    choose_gov:"اختر ولاية.", phone_invalid:"رقم الهاتف غير صالح.",
+    publishing:"جارٍ النشر…", ad_online:"تم نشر الإعلان وهو ظاهر ✅",
+    ad_created:"تم إنشاء الإعلان. فعّل اشتراكك ليصبح ظاهرًا.",
+    act_title:"تفعيل الاشتراك", act_sub:"اجعل إعلاناتك ظاهرة في كل تونس بكود مسبق الدفع.",
+    act_active_prefix:"✅ اشتراكك مفعّل حتى", act_active_suffix:". إعلاناتك ظاهرة.",
+    act_have_code:"عندي كود", act_have_code_sub:"أدخل كود التفعيل لنشر إعلاناتك فورًا.",
+    activate_btn:"تفعيل", act_login_first:"سجّل الدخول أولًا لربط الكود بحسابك.", login_arrow:"تسجيل الدخول ←",
+    plan_month:"شهري", plan_year:"سنوي", plan_save:"شهران مجّانًا", act_no_code:"ليس لديّ كود بعد",
+    tab_ccp:"🏤 البريد (CCP)", flouci_num:"رقم Flouci", official_account:"Khedmain — الحساب الرسمي",
+    copy_num:"📋 نسخ الرقم", ccp_account:"حساب CCP",
+    ccp_note:"🏤 أودِع نقدًا في أيّ مكتب بريد بهذا الرقم، أو حوّل عبر CCP. احتفظ بالوصل.",
+    ps1_t:"ادفع مبلغ خطتك", ps1_d:"شهري {m} أو سنوي {y}، عبر Flouci أو البريد.",
+    ps2_t:"أرسل الإثبات عبر واتساب", ps2_d:"لقطة شاشة من Flouci أو صورة الوصل، مع رقمك المسجّل.",
+    ps3_t:"استلم كودك", ps3_d:"نتحقّق ونرسل لك الكود عبر واتساب، عادةً في أقل من ساعة.",
+    ps4_t:"فعّله في الأعلى", ps4_d:"أدخل الكود في الخانة أعلى هذه الصفحة. تصبح إعلاناتك ظاهرة فورًا.",
+    send_proof:"💬 أرسل الإثبات", wa_proof_msg:"مرحبًا Khedmain، هذا إثبات دفعي لتفعيل اشتراكي. رقمي المسجّل: ",
+    copied:"✓ تم النسخ", enter_code:"أدخل الكود.", activating:"جارٍ التفعيل…", sub_activated_prefix:"تم تفعيل اشتراك", sub_activated_suffix:"✅",
+    login_title:"تسجيل الدخول", register_title:"إنشاء حساب", login_sub:"ادخل إلى مساحة المزوّد الخاصة بك.",
+    register_sub:"انضمّ إلى Khedmain في دقيقة.", f_fullname:"الاسم الكامل", ph_fullname:"الاسم واللقب",
+    f_phone2:"الهاتف", f_password:"كلمة السر", login_btn:"دخول", register_btn:"إنشاء حسابي",
+    no_account:"ليس لديك حساب؟", register_link:"سجّل", have_account:"لديك حساب؟", login_link:"دخول",
+    phone_invalid2:"رقم غير صالح (الصيغة +216 XX XXX XXX).", pass_short:"كلمة السر قصيرة جدًّا.", one_moment:"لحظة…",
+    welcome:"أهلاً", enter_fullname:"أدخل اسمك الكامل.", account_created:"تم إنشاء الحساب ✅",
+    hello:"مرحبًا،", dash_sub:"أدِر إعلاناتك واشتراكك.", admin_btn:"🛠️ الإدارة", new_ad:"+ إعلان جديد",
+    sub_label:"الاشتراك", active:"مفعّل", inactive:"غير مفعّل", until:"حتى", online:"منشور",
+    not_visible:"إعلاناتك غير ظاهرة.", activate_now:"فعّل الآن", extend:"تمديد",
+    my_ads:"إعلاناتي", online_visible:"منشورة وظاهرة", pending_activation:"في انتظار التفعيل",
+    badge_online:"● منشور", badge_pending:"⏳ في الانتظار", view:"عرض",
+    dash_empty:"ليس لديك إعلان بعد. انشر واحدًا للبدء.", dash_load_err:"تعذّر تحميل مساحتك.",
+    confirm_delete:"حذف هذا الإعلان؟", ad_deleted:"تم حذف الإعلان.",
+    admin_denied:"الوصول مخصّص للمشرف.", admin_load:"جارٍ تحميل الإدارة…",
+    admin_title:"إدارة Khedmain", admin_sub:"المزوّدون، الإعلانات والأكواد مسبقة الدفع.",
+    stat_providers:"المزوّدون", stat_listings:"الإعلانات", stat_free_codes:"أكواد متاحة", stat_used_codes:"أكواد مستعملة",
+    tab_providers:"👤 المزوّدون", tab_listings:"📋 الإعلانات", tab_codes:"🎟️ الأكواد",
+    no_providers:"لا يوجد مزوّدون.", load_err:"خطأ في التحميل.",
+    verified_chip:"✅ موثّق", admin_chip:"مشرف", suspended_chip:"موقوف", subscribed:"مشترك", not_subscribed:"غير مشترك",
+    remove_verif:"إزالة التوثيق", verify_btn:"✔ توثيق", revoke_sub:"إلغاء الاشتراك", grant_month:"+ شهر",
+    reactivate:"إعادة تفعيل", suspend:"⛔ إيقاف", provider_updated:"تم تحديث المزوّد.",
+    sub_revoked:"تم إلغاء الاشتراك.", sub_granted:"تم منح اشتراك (+ شهر).",
+    disabled_chip:"معطّلة", disable:"⛔ تعطيل", no_ads:"لا توجد إعلانات.", ad_updated:"تم تحديث الإعلان.",
+    gen_codes:"توليد أكواد", f_plan:"الخطة", f_qty:"الكمية", generate:"توليد",
+    free_codes:"أكواد متاحة", plan_word:"خطة", no_free_codes:"لا توجد أكواد متاحة. ولّد بعضها.", copy:"📋 نسخ",
+    generating:"جارٍ التوليد…", codes_generated:"كود تم توليده.",
+    help_title:"كيف يعمل", help_sub:"Khedmain يربط التونسيين بمحترفين ومعدّات، بدون وسيط.",
+    help_s1_t:"ابحث", help_s1_d:"صفِّ حسب الفئة والولاية والكلمة المفتاحية لتجد محترفًا أو معدّة قربك.",
+    help_s2_t:"قارن", help_s2_d:"اطّلع على الصور والأسعار والأوصاف. اختر بكل ثقة.",
+    help_s3_t:"تواصل", help_s3_d:"اتصل أو راسِل عبر واتساب مباشرة. بدون عمولة ولا رسوم على الزبون.",
+    help_prov_title:"أنت مزوّد خدمة؟",
+    help_prov_body:`أنشئ حسابك، انشر إعلانك بالصور والأسعار، ثم فعّل ظهورك بـ<strong>كود مسبق الدفع</strong> (Flouci أو البريد). بعد التفعيل، يظهر إعلانك في نتائج البحث بكل تونس. وتحتفظ بـ100% من مداخيلك.`,
+    help_cta_publish:"أضف إعلان", help_cta_activate:"التفعيل بكود",
+    cond_title:"الشروط والأمان", cond_updated:"آخر تحديث:",
+    cond_body:`<strong>1. دور Khedmain.</strong> Khedmain منصّة للتعارف والوساطة. لسنا طرفًا في الخدمات ولا مشغّلًا للمزوّدين. تُبرَم الاتفاقات والأسعار والأعمال مباشرة بين الزبون والمزوّد.
+
+<strong>2. المسؤولية.</strong> لا تضمن Khedmain جودة الخدمات المعروضة ولا قانونيّتها ولا سلامتها. تحقّق دائمًا من الهوية والكفاءات قبل أيّ التزام.
+
+<strong>3. الأمان.</strong> قابِل الشخص في مكان آمن، لا تدفع عربونًا كبيرًا مقدّمًا، واطلب وصلًا. أبلِغ عن أيّ تجاوز عبر واتساب.
+
+<strong>4. الاشتراك.</strong> يتوقّف ظهور الإعلان على اشتراك نشط، يُفعَّل بكود مسبق الدفع. الأكواد شخصية وتُستعمل مرّة واحدة.
+
+<strong>5. محتوى الإعلانات.</strong> المزوّد وحده مسؤول عن المحتوى الذي ينشره. تُحذف الإعلانات المزيّفة أو غير القانونية أو المضلِّلة.
+
+<strong>6. البيانات.</strong> نحتفظ بالمعلومات اللازمة لتشغيل الخدمة (الحساب، الإعلانات، بيانات الاتصال). يمكنك طلب حذف حسابك عبر واتساب.`,
+    cond_disclaimer:"هذا النصّ نموذج أوّلي يُنصح بمراجعته وفق التشريع التونسي قبل الإطلاق العلني.",
+  },
+};
+function t(k){ const v = I18N[LANG] && I18N[LANG][k]; return v!=null ? v : (I18N.fr[k]!=null ? I18N.fr[k] : k); }
+
+/* Arabic names for governorates + categories (values/ids stay canonical FR) */
+const GOV_AR = {'Tunis':'تونس','Ariana':'أريانة','Ben Arous':'بن عروس','Manouba':'منوبة','Nabeul':'نابل','Zaghouan':'زغوان','Bizerte':'بنزرت','Béja':'باجة','Jendouba':'جندوبة','Le Kef':'الكاف','Siliana':'سليانة','Sousse':'سوسة','Monastir':'المنستير','Mahdia':'المهدية','Kairouan':'القيروان','Kasserine':'القصرين','Sidi Bouzid':'سيدي بوزيد','Sfax':'صفاقس','Gabès':'قابس','Médenine':'مدنين','Tataouine':'تطاوين','Gafsa':'قفصة','Tozeur':'توزر','Kébili':'قبلي'};
+const CAT_AR = {plomberie:'السباكة',electricite:'الكهرباء',peinture:'الدهن والديكور',menuiserie:'النجارة',maconnerie:'البناء والمقاولات',clim:'التكييف والتبريد',carrelage:'البلاط والرخام',platrerie:'الجبس والأسقف المستعارة',soudure:'اللحام والحدادة',jardinage:'البستنة والمساحات الخضراء',nettoyage:'التنظيف',mecanique:'ميكانيك السيارات',tolerie:'الحدادة ودهن السيارات',coiffure:'الحلاقة والتجميل',couture:'الخياطة والتفصيل',cours:'دروس خصوصية',informatique:'الإعلامية والإصلاح',photo:'التصوير والفيديو',traiteur:'المطبخ والحفلات',aide:'المساعدة المنزلية والرعاية',gardiennage:'الأمن والحراسة',autres:'خدمات أخرى',pickup:'بيك أب وعربات نفعية',camion:'شاحنات ووزن ثقيل',excavatrice:'حفّارة',chargeuse:'جرّافة / تراكتوبال',grue:'رافعة ورفع',tracteur:'جرّار فلاحي',betonniere:'خلّاطة الخرسانة',citerne:'شاحنة صهريج (ماء)',bus:'حافلة ونقل',materiel:'كراء معدّات البناء'};
+const UNIT_AR = {heure:'/ ساعة',jour:'/ يوم',service:'/ خدمة',projet:'/ مشروع',mois:'/ شهر',km:'/ كم'};
+function govDisplay(g){ return LANG==='ar' ? (GOV_AR[g]||g) : g; }
+function catName(id){ const c=CAT_BY_ID[id]; if(!c) return ''; return LANG==='ar' ? (CAT_AR[id]||c.name) : c.name; }
+function groupName(fr){ return LANG==='ar' ? (fr==='Véhicules & Engins'?'المركبات والمعدّات':'المهن والخدمات') : fr; }
+function planLabel(plan){ return LANG==='ar' ? (plan==='year'?'سنوي':'شهري') : (plan==='year'?'annuel':'mensuel'); }
+function fmtDate(ts){ const d=new Date(ts); const p=n=>String(n).padStart(2,'0'); return `${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()}`; }
+function countAnnonces(n){ return LANG==='ar' ? `${n} إعلان` : `${n} annonce${n>1?'s':''}`; }
+function nResults(n){ return LANG==='ar' ? `${n} نتيجة` : `${n} résultat${n>1?'s':''}`; }
+function homeTotal(n){ return LANG==='ar' ? `${n} محترف ومعدّة متاحة` : `${n} pro${n>1?'s':''} & engins disponibles`; }
+
+function applyStaticI18n(){ $$('[data-i18n]').forEach(el=>{ el.textContent = t(el.getAttribute('data-i18n')); }); }
+function updateLangToggle(){ $$('.lang-btn').forEach(b=>{ b.textContent = LANG==='ar' ? 'FR' : 'ع'; }); }
+function applyLang(){
+  const el = document.documentElement;
+  el.lang = LANG; el.dir = (LANG==='ar') ? 'rtl' : 'ltr';
+  document.title = t('meta_title');
+  const md = document.querySelector('meta[name="description"]'); if(md) md.setAttribute('content', t('meta_desc'));
+  applyStaticI18n(); updateLangToggle();
+}
+window.toggleLang = function(){ LANG = (LANG==='ar')?'fr':'ar'; localStorage.setItem('kd_lang', LANG); applyLang(); router(); };
 
 /* ---------- Reference data ----------------------------------------------- */
 const GOVERNORATES = [
@@ -507,7 +808,7 @@ const PRICE_UNITS = [
   {v:'heure', l:'/ heure'}, {v:'jour', l:'/ jour'}, {v:'service', l:'/ prestation'},
   {v:'projet', l:'/ projet'}, {v:'mois', l:'/ mois'}, {v:'km', l:'/ km'},
 ];
-const unitLabel = (v) => (PRICE_UNITS.find(u=>u.v===v)||{}).l || '';
+function unitLabel(v){ if(LANG==='ar') return UNIT_AR[v]||''; const u=PRICE_UNITS.find(x=>x.v===v); return u?u.l:''; }
 
 /* ---------- Utils -------------------------------------------------------- */
 const $  = (s,r=document) => r.querySelector(s);
@@ -537,6 +838,11 @@ function placeholder(catId){
 const firstPhoto = (l) => (l.photos && l.photos[0]) ? l.photos[0] : placeholder(l.category);
 function timeAgo(ts){
   const d = Math.floor((now()-ts)/86400000);
+  if(LANG==='ar'){
+    if(d<=0) return 'اليوم'; if(d===1) return 'أمس';
+    if(d<7) return `منذ ${d} أيام`; if(d<30) return `منذ ${Math.floor(d/7)} أسابيع`;
+    return `منذ ${Math.floor(d/30)} أشهر`;
+  }
   if(d<=0) return "aujourd'hui"; if(d===1) return 'hier';
   if(d<7) return `il y a ${d} jours`; if(d<30) return `il y a ${Math.floor(d/7)} sem.`;
   return `il y a ${Math.floor(d/30)} mois`;
@@ -571,19 +877,19 @@ async function apiFetch(path, opts = {}){
   const headers = {};
   if(body) headers['Content-Type'] = 'application/json';
   if(auth && TOKEN) headers['Authorization'] = 'Bearer ' + TOKEN;
-  const waking = setTimeout(()=>toast('⏳ Le serveur se réveille, un instant…'), 3500);
+  const waking = setTimeout(()=>toast(t('server_waking')), 3500);
   let res;
   try {
     res = await fetch(API + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
   } catch(e) {
     clearTimeout(waking);
-    throw new Error('Connexion au serveur impossible. Vérifiez votre réseau.');
+    throw new Error(t('err_network'));
   }
   clearTimeout(waking);
   let data = null;
   try { data = await res.json(); } catch {}
   if(!res.ok){
-    const err = new Error((data && data.error) || ('Erreur ' + res.status));
+    const err = new Error((data && data.error) || (t('err_prefix') + res.status));
     err.status = res.status; throw err;
   }
   return data;
@@ -601,17 +907,17 @@ function clearSession(){
 }
 const currentUser = () => ME;
 const subActive = (u) => !!(u && u.subUntil && u.subUntil > now());
-function logout(){ clearSession(); navigate('#/'); toast('Déconnecté.'); }
+function logout(){ clearSession(); navigate('#/'); toast(t('logout_toast')); }
 
 /* ---------- Shared render helpers ---------------------------------------- */
-function loading(msg='Chargement…'){
-  app.innerHTML = `<div class="page"><div class="wrap"><div class="empty"><div class="big">⏳</div><p>${esc(msg)}</p></div></div></div>`;
+function loading(msg){
+  app.innerHTML = `<div class="page"><div class="wrap"><div class="empty"><div class="big">⏳</div><p>${esc(msg||t('loading'))}</p></div></div></div>`;
 }
 function errorState(msg, retry){
   window._retry = retry;
   app.innerHTML = `<div class="page"><div class="wrap"><div class="empty"><div class="big">📡</div>
     <p>${esc(msg)}</p>
-    <div style="margin-top:16px"><button class="btn btn-primary" onclick="window._retry&&window._retry()">Réessayer</button></div>
+    <div style="margin-top:16px"><button class="btn btn-primary" onclick="window._retry&&window._retry()">${t('retry')}</button></div>
   </div></div></div>`;
 }
 function emptyBlock(msg){
@@ -620,19 +926,20 @@ function emptyBlock(msg){
 function listingCard(l){
   const cat = CAT_BY_ID[l.category] || {name:'',icon:'📌'};
   const priceHtml = l.price
-    ? `<div class="lcard-price">${esc(l.price)} DT <span class="u">${esc(unitLabel(l.unit))}</span></div>`
-    : `<div class="lcard-price ask">Sur devis</div>`;
+    ? `<div class="lcard-price">${esc(l.price)} ${t('dt')} <span class="u">${esc(unitLabel(l.unit))}</span></div>`
+    : `<div class="lcard-price ask">${t('sur_devis')}</div>`;
+  const loc = [l.area, govDisplay(l.gov)].filter(Boolean).join('، ');
   return `
     <a class="lcard" href="#/listing/${l.id}">
       <div class="lcard-img">
         <img src="${firstPhoto(l)}" alt="${esc(l.title)}" loading="lazy" />
-        <span class="lcard-cat">${cat.icon} ${esc(cat.name)}</span>
-        ${l.withDriver ? '<span class="lcard-veh">Avec chauffeur</span>' : ''}
+        <span class="lcard-cat">${cat.icon} ${esc(catName(l.category))}</span>
+        ${l.withDriver ? `<span class="lcard-veh">${t('with_driver')}</span>` : ''}
       </div>
       <div class="lcard-body">
         <div class="lcard-title">${esc(l.title)}</div>
-        <div class="lcard-loc">📍 ${esc([l.area,l.gov].filter(Boolean).join(', '))}</div>
-        <div class="lcard-foot">${priceHtml}<span class="chip-mini">Contact direct</span></div>
+        <div class="lcard-loc">📍 ${esc(loc)}</div>
+        <div class="lcard-foot">${priceHtml}<span class="chip-mini">${t('contact_direct')}</span></div>
       </div>
     </a>`;
 }
@@ -672,23 +979,23 @@ function renderNav(){
   if(!right) return;
   if(u){
     right.innerHTML = `
-      <a href="#/dashboard" class="btn btn-ghost btn-sm hide-sm">Mon espace</a>
-      <button class="btn btn-ghost btn-sm hide-sm" onclick="logout()">Déconnexion</button>
-      <a href="#/post" class="btn btn-sun btn-sm">+ Publier</a>`;
+      <a href="#/dashboard" class="btn btn-ghost btn-sm hide-sm">${t('nav_myspace')}</a>
+      <button class="btn btn-ghost btn-sm hide-sm" onclick="logout()">${t('nav_logout')}</button>
+      <a href="#/post" class="btn btn-sun btn-sm">${t('nav_publish')}</a>`;
     sheetAuth.innerHTML = `
-      <a href="#/dashboard" onclick="closeSheet()">Mon espace</a>
-      ${u.isAdmin ? '<a href="#/admin" onclick="closeSheet()">🛠️ Administration</a>' : ''}
-      <a href="#/post" onclick="closeSheet()">+ Publier une annonce</a>
-      <a href="#" onclick="closeSheet();logout();return false;">Déconnexion</a>`;
+      <a href="#/dashboard" onclick="closeSheet()">${t('nav_myspace')}</a>
+      ${u.isAdmin ? `<a href="#/admin" onclick="closeSheet()">${t('sheet_admin')}</a>` : ''}
+      <a href="#/post" onclick="closeSheet()">${t('sheet_publish_full')}</a>
+      <a href="#" onclick="closeSheet();logout();return false;">${t('nav_logout')}</a>`;
   } else {
     right.innerHTML = `
-      <a href="#/login" class="btn btn-ghost btn-sm hide-sm">Connexion</a>
-      <a href="#/post" class="btn btn-sun btn-sm">+ Publier</a>`;
+      <a href="#/login" class="btn btn-ghost btn-sm hide-sm">${t('nav_login')}</a>
+      <a href="#/post" class="btn btn-sun btn-sm">${t('nav_publish')}</a>`;
     sheetAuth.innerHTML = `
-      <a href="#/login" onclick="closeSheet()">Connexion / Inscription</a>
-      <a href="#/post" onclick="closeSheet()">+ Publier une annonce</a>`;
+      <a href="#/login" onclick="closeSheet()">${t('sheet_login_full')}</a>
+      <a href="#/post" onclick="closeSheet()">${t('sheet_publish_full')}</a>`;
   }
-  const fw = $('#footWa'); if(fw) fw.href = waLink('Bonjour Khedmain, j\'ai besoin d\'aide.');
+  const fw = $('#footWa'); if(fw) fw.href = waLink(t('wa_help'));
 }
 function openSheet(){ $('#sheet').classList.add('open'); }
 function closeSheet(){ $('#sheet').classList.remove('open'); }
@@ -700,7 +1007,7 @@ function viewHome(){
   // Paint the static shell immediately (fast first impression, even on cold start)
   const mosaic = CATEGORIES.map(g => `
     <div class="cat-group-label">
-      <span>${g.group==='Véhicules & Engins' ? '🚜 ' : '🧰 '}${esc(g.group)}</span>
+      <span>${g.group==='Véhicules & Engins' ? '🚜 ' : '🧰 '}${esc(groupName(g.group))}</span>
       <div class="rule ${g.group==='Véhicules & Engins'?'sun':''}"></div>
     </div>
     <div class="cat-grid">
@@ -708,42 +1015,37 @@ function viewHome(){
         <a class="cat-tile ${isVehicle(c.id)?'veh':''}" href="#/browse?cat=${c.id}">
           <div class="cat-ico">${c.icon}</div>
           <div>
-            <div class="cat-name">${esc(c.name)}</div>
+            <div class="cat-name">${esc(catName(c.id))}</div>
             <div class="cat-count" data-catcount="${c.id}">—</div>
           </div>
         </a>`).join('')}
     </div>`).join('');
+  const heroTags = ['plomberie','electricite','excavatrice','pickup','nettoyage','cours']
+    .map(id => `<a href="#/browse?cat=${id}">${CAT_BY_ID[id].icon} ${esc(catName(id))}</a>`).join('');
 
   app.innerHTML = `
     <section class="hero">
       <div class="hero-grid"></div>
       <div class="wrap hero-in">
-        <span class="eyebrow">🇹🇳 100% Tunisie · <span id="heroTotal">…</span></span>
-        <h1>Un <span class="hl">pro</span> pour chaque khedma,<br/>un <span class="hl">engin</span> pour chaque chantier.</h1>
-        <p class="lede">Plombiers, électriciens, peintres, mécaniciens… ou un pick-up, une pelle, une grue avec chauffeur. Trouvez, comparez, contactez directement.</p>
+        <span class="eyebrow">${t('home_eyebrow')}<span id="heroTotal">…</span></span>
+        <h1>${t('home_h1')}</h1>
+        <p class="lede">${t('home_lede')}</p>
         <form class="console" onsubmit="return heroSearch(event)">
-          <div class="fld"><label>Que cherchez-vous&nbsp;?</label><input id="hQ" placeholder="Plombier, excavatrice, cours de maths…" /></div>
-          <div class="fld"><label>Où&nbsp;?</label><select id="hGov"><option value="">Tout le pays</option>${GOVERNORATES.map(g=>`<option>${g}</option>`).join('')}</select></div>
+          <div class="fld"><label>${t('home_q_label')}</label><input id="hQ" placeholder="${t('home_q_ph')}" /></div>
+          <div class="fld"><label>${t('home_where')}</label><select id="hGov"><option value="">${t('home_allcountry')}</option>${GOVERNORATES.map(g=>`<option value="${g}">${govDisplay(g)}</option>`).join('')}</select></div>
           <button class="btn btn-primary go" type="submit">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="8" cy="8" r="6"/><path d="M17 17l-4-4"/></svg>
-            Rechercher
+            ${t('home_search')}
           </button>
         </form>
-        <div class="hero-tags">
-          <a href="#/browse?cat=plomberie">🔧 Plomberie</a>
-          <a href="#/browse?cat=electricite">💡 Électricité</a>
-          <a href="#/browse?cat=excavatrice">🚜 Excavatrice</a>
-          <a href="#/browse?cat=pickup">🛻 Pick-up</a>
-          <a href="#/browse?cat=nettoyage">🧹 Nettoyage</a>
-          <a href="#/browse?cat=cours">📚 Cours particuliers</a>
-        </div>
+        <div class="hero-tags">${heroTags}</div>
       </div>
     </section>
 
     <section class="band alt">
       <div class="wrap">
-        <div class="head"><div class="kicker">Toutes les catégories</div><h2>Des métiers aux gros engins</h2>
-          <p>Tout ce qui se fait, se répare, se construit ou se transporte en Tunisie — au même endroit.</p></div>
+        <div class="head"><div class="kicker">${t('home_cat_kicker')}</div><h2>${t('home_cat_title')}</h2>
+          <p>${t('home_cat_sub')}</p></div>
         ${mosaic}
       </div>
     </section>
@@ -751,8 +1053,8 @@ function viewHome(){
     <section class="band">
       <div class="wrap">
         <div class="head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:16px;flex-wrap:wrap;">
-          <div><div class="kicker">Annonces récentes</div><h2>Fraîchement publiées</h2></div>
-          <a href="#/browse" class="btn btn-ghost btn-sm">Voir tout →</a>
+          <div><div class="kicker">${t('home_recent_kicker')}</div><h2>${t('home_recent_title')}</h2></div>
+          <a href="#/browse" class="btn btn-ghost btn-sm">${t('see_all')}</a>
         </div>
         <div class="list-grid" id="featuredGrid">
           ${Array.from({length:4}).map(()=>`<div class="lcard"><div class="lcard-img skeleton"></div><div class="lcard-body"><div class="lcard-title skeleton" style="height:18px;border-radius:6px">&nbsp;</div><div class="lcard-loc skeleton" style="height:14px;width:60%;border-radius:6px;margin-top:8px">&nbsp;</div></div></div>`).join('')}
@@ -762,16 +1064,16 @@ function viewHome(){
 
     <section class="band dark">
       <div class="wrap">
-        <div class="head"><div class="kicker">Vous offrez un service&nbsp;?</div><h2>Publiez, activez, décrochez des clients</h2>
-          <p>Pas de commission sur vos contrats. Un abonnement simple par code prépayé rend votre annonce visible partout en Tunisie.</p></div>
+        <div class="head"><div class="kicker">${t('home_provider_kicker')}</div><h2>${t('home_provider_title')}</h2>
+          <p>${t('home_provider_sub')}</p></div>
         <div class="steps">
-          <div class="step"><div class="n">1</div><h3>Publiez votre annonce</h3><p>Décrivez votre service ou votre engin, ajoutez vos photos et vos tarifs. C\'est gratuit à créer.</p></div>
-          <div class="step"><div class="n">2</div><h3>Activez par code prépayé</h3><p>Payez par Flouci ou CCP, envoyez la preuve sur WhatsApp, recevez votre code et activez votre visibilité.</p></div>
-          <div class="step"><div class="n">3</div><h3>Recevez les appels</h3><p>Les clients vous contactent directement, par téléphone ou WhatsApp. Aucun intermédiaire.</p></div>
+          <div class="step"><div class="n">1</div><h3>${t('home_s1_t')}</h3><p>${t('home_s1_d')}</p></div>
+          <div class="step"><div class="n">2</div><h3>${t('home_s2_t')}</h3><p>${t('home_s2_d')}</p></div>
+          <div class="step"><div class="n">3</div><h3>${t('home_s3_t')}</h3><p>${t('home_s3_d')}</p></div>
         </div>
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="#/post" class="btn btn-sun">Publier mon annonce</a>
-          <a href="#/help" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.3)">Comment ça marche</a>
+          <a href="#/post" class="btn btn-sun">${t('home_cta_publish')}</a>
+          <a href="#/help" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.3)">${t('nav_how')}</a>
         </div>
       </div>
     </section>`;
@@ -782,15 +1084,15 @@ function viewHome(){
     const counts = {}; listings.forEach(l => counts[l.category] = (counts[l.category]||0)+1);
     $$('[data-catcount]').forEach(el => {
       const n = counts[el.getAttribute('data-catcount')] || 0;
-      el.textContent = `${n} annonce${n>1?'s':''}`;
+      el.textContent = countAnnonces(n);
     });
     const total = listings.length;
-    const ht = $('#heroTotal'); if(ht) ht.textContent = `${total} pro${total>1?'s':''} & engins disponibles`;
+    const ht = $('#heroTotal'); if(ht) ht.textContent = homeTotal(total);
     const grid = $('#featuredGrid');
-    if(grid) grid.innerHTML = listings.slice(0,8).map(listingCard).join('') || emptyBlock('Aucune annonce active pour le moment. Soyez le premier à publier !');
+    if(grid) grid.innerHTML = listings.slice(0,8).map(listingCard).join('') || emptyBlock(t('home_empty'));
   }).catch(() => {
-    const ht = $('#heroTotal'); if(ht) ht.textContent = 'place de marché tunisienne';
-    const grid = $('#featuredGrid'); if(grid) grid.innerHTML = emptyBlock('Impossible de charger les annonces pour le moment.');
+    const ht = $('#heroTotal'); if(ht) ht.textContent = t('home_total_fallback');
+    const grid = $('#featuredGrid'); if(grid) grid.innerHTML = emptyBlock(t('home_load_err'));
     $$('[data-catcount]').forEach(el => el.textContent = '');
   });
 }
@@ -810,9 +1112,9 @@ let BROWSE_DATA = [];
 let browseState = { cat:null, gov:null, group:null, q:'' };
 function viewBrowse({params}){
   browseState = { cat: params.cat||null, gov: params.gov||null, group: params.g||null, q: params.q||'' };
-  loading('Chargement des annonces…');
+  loading(t('loading'));
   apiFetch('/listings').then(d => { BROWSE_DATA = d.listings || []; renderBrowse(); })
-    .catch(() => errorState('Impossible de charger les annonces.', () => viewBrowse({params})));
+    .catch(() => errorState(t('browse_load_err'), () => viewBrowse({params})));
 }
 function browseCounts(){
   const counts = {}; BROWSE_DATA.forEach(l => counts[l.category] = (counts[l.category]||0)+1); return counts;
@@ -820,46 +1122,46 @@ function browseCounts(){
 function renderBrowse(){
   const counts = browseCounts();
   const catFilterHtml = CATEGORIES.map(g => `
-    <h4 style="margin-top:14px">${esc(g.group)}</h4>
+    <h4 style="margin-top:14px">${esc(groupName(g.group))}</h4>
     <div class="f-list">
       ${g.items.map(c => `
         <button class="f-item ${browseState.cat===c.id?'on':''}" onclick="setFilter('cat','${c.id}')">
-          <span>${c.icon} ${esc(c.name)}</span><span class="c">${counts[c.id]||0}</span>
+          <span>${c.icon} ${esc(catName(c.id))}</span><span class="c">${counts[c.id]||0}</span>
         </button>`).join('')}
     </div>`).join('');
 
   app.innerHTML = `
     <div class="page"><div class="wrap">
-      <div class="crumb"><a href="#/">Accueil</a> · Parcourir</div>
+      <div class="crumb"><a href="#/">${t('crumb_home')}</a> · ${t('crumb_browse')}</div>
       <div class="browse">
         <aside class="filters-col" id="filtersCol">
           <div class="filters">
-            <h4>Recherche</h4>
+            <h4>${t('f_search')}</h4>
             <div class="search-inline" style="max-width:none;margin-bottom:6px">
               <svg width="16" height="16" fill="none" stroke="#66717C" stroke-width="2"><circle cx="7" cy="7" r="5"/><path d="M15 15l-4-4"/></svg>
-              <input id="bQ" placeholder="Mot-clé…" value="${esc(browseState.q)}" />
+              <input id="bQ" placeholder="${t('f_kw_ph')}" value="${esc(browseState.q)}" />
             </div>
-            ${(browseState.cat||browseState.gov||browseState.q||browseState.group) ? '<button class="btn btn-ghost btn-sm btn-block" style="margin-top:6px" onclick="clearFilters()">Réinitialiser</button>':''}
+            ${(browseState.cat||browseState.gov||browseState.q||browseState.group) ? `<button class="btn btn-ghost btn-sm btn-block" style="margin-top:6px" onclick="clearFilters()">${t('reset')}</button>`:''}
           </div>
           <div class="filters">
-            <h4>Gouvernorat</h4>
+            <h4>${t('f_gov')}</h4>
             <div class="f-list">
-              <button class="f-item ${!browseState.gov?'on':''}" onclick="setFilter('gov','')"><span>Tous</span></button>
-              ${GOVERNORATES.map(g=>`<button class="f-item ${browseState.gov===g?'on':''}" onclick="setFilter('gov','${g}')"><span>${g}</span></button>`).join('')}
+              <button class="f-item ${!browseState.gov?'on':''}" onclick="setFilter('gov','')"><span>${t('all_m')}</span></button>
+              ${GOVERNORATES.map(g=>`<button class="f-item ${browseState.gov===g?'on':''}" onclick="setFilter('gov','${g}')"><span>${govDisplay(g)}</span></button>`).join('')}
             </div>
           </div>
           <div class="filters">
-            <h4>Catégorie</h4>
-            <button class="f-item ${!browseState.cat&&!browseState.group?'on':''}" onclick="clearCat()"><span>Toutes</span></button>
-            <button class="f-item ${browseState.group==='Métiers & Services'?'on':''}" onclick="setFilter('g','Métiers & Services')"><span>🧰 Métiers &amp; Services</span></button>
-            <button class="f-item ${browseState.group==='Véhicules & Engins'?'on':''}" onclick="setFilter('g','Véhicules & Engins')"><span>🚜 Véhicules &amp; Engins</span></button>
+            <h4>${t('f_cat')}</h4>
+            <button class="f-item ${!browseState.cat&&!browseState.group?'on':''}" onclick="clearCat()"><span>${t('all_f')}</span></button>
+            <button class="f-item ${browseState.group==='Métiers & Services'?'on':''}" onclick="setFilter('g','Métiers & Services')"><span>🧰 ${groupName('Métiers & Services')}</span></button>
+            <button class="f-item ${browseState.group==='Véhicules & Engins'?'on':''}" onclick="setFilter('g','Véhicules & Engins')"><span>🚜 ${groupName('Véhicules & Engins')}</span></button>
             ${catFilterHtml}
           </div>
         </aside>
         <div>
           <div class="browse-main-head">
             <div><h1 style="font-size:24px">${browseTitle()}</h1><div class="browse-count" id="browseCount"></div></div>
-            <button class="btn btn-ghost btn-sm filters-toggle" onclick="$('#filtersCol').classList.toggle('open')">☰ Filtres</button>
+            <button class="btn btn-ghost btn-sm filters-toggle" onclick="$('#filtersCol').classList.toggle('open')">${t('filters')}</button>
           </div>
           <div class="list-grid" id="browseResults"></div>
         </div>
@@ -871,10 +1173,10 @@ function renderBrowse(){
   runBrowse();
 }
 function browseTitle(){
-  if(browseState.cat) return CAT_BY_ID[browseState.cat]?.name || 'Annonces';
-  if(browseState.group) return browseState.group;
-  if(browseState.gov) return 'Annonces — '+browseState.gov;
-  return 'Toutes les annonces';
+  if(browseState.cat) return catName(browseState.cat) || t('browse_annonces');
+  if(browseState.group) return groupName(browseState.group);
+  if(browseState.gov) return t('browse_annonces')+' — '+govDisplay(browseState.gov);
+  return t('browse_all');
 }
 function runBrowse(){
   let items = BROWSE_DATA.slice();
@@ -888,8 +1190,8 @@ function runBrowse(){
       (CAT_BY_ID[l.category]?.name||'').toLowerCase().includes(q) || (l.area||'').toLowerCase().includes(q));
   }
   const res = $('#browseResults'); const cnt = $('#browseCount');
-  if(cnt) cnt.textContent = `${items.length} résultat${items.length>1?'s':''}`;
-  if(res) res.innerHTML = items.length ? items.map(listingCard).join('') : emptyBlock('Aucune annonce ne correspond. Essayez d\'élargir votre recherche.');
+  if(cnt) cnt.textContent = nResults(items.length);
+  if(res) res.innerHTML = items.length ? items.map(listingCard).join('') : emptyBlock(t('browse_none'));
 }
 window.setFilter = function(key, val){
   if(key==='cat'){ browseState.cat = val||null; browseState.group=null; }
@@ -913,47 +1215,49 @@ function syncBrowseHash(){
    ============================================================================ */
 function viewListing({seg}){
   const id = seg[0];
-  loading('Chargement de l\'annonce…');
+  loading(t('loading'));
   apiFetch('/listings/'+id).then(({listing:l}) => {
     const cat = CAT_BY_ID[l.category] || {name:'',icon:'📌'};
     const photos = (l.photos && l.photos.length) ? l.photos : [placeholder(l.category)];
     const phone = normPhone(l.phone);
+    const loc = [l.area, govDisplay(l.gov)].filter(Boolean).join('، ');
     window._gal = photos;
     app.innerHTML = `
       <div class="page"><div class="wrap">
-        <div class="crumb"><a href="#/browse">Annonces</a> · <a href="#/browse?cat=${l.category}">${esc(cat.name)}</a></div>
-        ${l.visible===false ? `<div class="notice sun" style="margin-bottom:18px">⏳ Cette annonce n\'est pas encore visible publiquement — son abonnement n\'est pas actif.</div>`:''}
+        <div class="crumb"><a href="#/browse">${t('browse_annonces')}</a> · <a href="#/browse?cat=${l.category}">${esc(catName(l.category))}</a></div>
+        ${l.visible===false ? `<div class="notice sun" style="margin-bottom:18px">${t('detail_notvisible')}</div>`:''}
         <div class="detail">
           <div>
             <div class="gallery-main"><img id="galMain" src="${photos[0]}" alt="${esc(l.title)}" /></div>
             ${photos.length>1 ? `<div class="gallery-thumbs">${photos.map((p,i)=>`<button class="${i===0?'on':''}" onclick="setGal(${i})"><img src="${p}" alt=""/></button>`).join('')}</div>`:''}
-            <div style="margin-top:26px"><h2 style="font-size:20px;margin-bottom:10px">Description</h2>
-              <div class="prose">${esc(l.desc||'Aucune description.')}</div></div>
+            <div style="margin-top:26px"><h2 style="font-size:20px;margin-bottom:10px">${t('detail_description')}</h2>
+              <div class="prose">${esc(l.desc||t('detail_nodesc'))}</div></div>
           </div>
           <aside class="detail-side">
             <div class="detail-card">
-              <span class="chip-mini">${cat.icon} ${esc(cat.name)}</span>
+              <span class="chip-mini">${cat.icon} ${esc(catName(l.category))}</span>
               <h1 style="font-size:22px;margin:12px 0 4px">${esc(l.title)}</h1>
-              <div class="lcard-loc" style="font-size:14px">📍 ${esc([l.area,l.gov].filter(Boolean).join(', '))}</div>
-              ${l.price ? `<div class="detail-price">${esc(l.price)} DT <span class="u">${esc(unitLabel(l.unit))}</span></div>` : `<div class="detail-price" style="font-size:20px;color:var(--muted)">Sur devis</div>`}
+              <div class="lcard-loc" style="font-size:14px">📍 ${esc(loc)}</div>
+              ${l.price ? `<div class="detail-price">${esc(l.price)} ${t('dt')} <span class="u">${esc(unitLabel(l.unit))}</span></div>` : `<div class="detail-price" style="font-size:20px;color:var(--muted)">${t('sur_devis')}</div>`}
               <div class="meta-row">
-                ${l.withDriver ? '<span class="meta-pill">🧑‍✈️ Avec chauffeur</span>':''}
-                <span class="meta-pill">👤 ${esc(l.ownerName||'Prestataire')}</span>
+                ${l.withDriver ? `<span class="meta-pill">🧑‍✈️ ${t('with_driver')}</span>`:''}
+                ${l.ownerVerified ? `<span class="meta-pill" style="background:var(--ok-tint);color:var(--ok)">${t('verified_pill')}</span>`:''}
+                <span class="meta-pill">👤 ${esc(l.ownerName||t('provider_default'))}</span>
                 <span class="meta-pill">🕑 ${timeAgo(l.createdAt)}</span>
               </div>
               <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
-                <a class="btn btn-primary btn-block" href="tel:${esc(phone)}">📞 Appeler ${esc(phone)}</a>
-                <a class="btn btn-wa btn-block" target="_blank" href="https://wa.me/${esc(phone.replace(/^\+/,''))}?text=${encodeURIComponent('Bonjour, je vous contacte via Khedmain au sujet de : '+l.title)}">💬 Contacter sur WhatsApp</a>
+                <a class="btn btn-primary btn-block" href="tel:${esc(phone)}">${t('call_btn')} ${esc(phone)}</a>
+                <a class="btn btn-wa btn-block" target="_blank" href="https://wa.me/${esc(phone.replace(/^\+/,''))}?text=${encodeURIComponent(t('wa_listing_msg')+l.title)}">${t('wa_btn')}</a>
               </div>
-              <div class="notice blue" style="margin-top:16px;font-size:12.5px">🔒 Pour votre sécurité : rencontrez-vous dans un lieu sûr, vérifiez le travail avant de payer, et ne versez jamais d\'acompte important à l\'avance.</div>
+              <div class="notice blue" style="margin-top:16px;font-size:12.5px">${t('detail_safety')}</div>
             </div>
           </aside>
         </div>
       </div></div>`;
   }).catch((e) => {
     if(e.status===404){
-      app.innerHTML = `<div class="page"><div class="wrap">${emptyBlock('Annonce introuvable.')}<div style="margin-top:16px"><a href="#/browse" class="btn btn-primary">Retour aux annonces</a></div></div></div>`;
-    } else { errorState('Impossible de charger cette annonce.', () => viewListing({seg})); }
+      app.innerHTML = `<div class="page"><div class="wrap">${emptyBlock(t('detail_notfound'))}<div style="margin-top:16px"><a href="#/browse" class="btn btn-primary">${t('back_to_listings')}</a></div></div></div>`;
+    } else { errorState(t('detail_load_err'), () => viewListing({seg})); }
   });
 }
 window.setGal = function(i){
@@ -969,53 +1273,53 @@ function viewPost(){
   const u = currentUser();
   if(!u){
     app.innerHTML = `<div class="page"><div class="wrap form-narrow">
-      <div class="notice blue" style="margin-bottom:18px">Connectez-vous pour publier une annonce. C\'est gratuit et rapide.</div>
-      <a href="#/login?next=/post" class="btn btn-primary btn-block">Connexion / Inscription</a>
+      <div class="notice blue" style="margin-bottom:18px">${t('post_login_note')}</div>
+      <a href="#/login?next=/post" class="btn btn-primary btn-block">${t('sheet_login_full')}</a>
     </div></div>`;
     return;
   }
   draft = { category:null, unit:'service', withDriver:false, photos:[], price:'' };
   const catOptions = CATEGORIES.map(g =>
-    `<optgroup label="${esc(g.group)}">${g.items.map(c=>`<option value="${c.id}">${c.icon} ${esc(c.name)}</option>`).join('')}</optgroup>`).join('');
+    `<optgroup label="${esc(groupName(g.group))}">${g.items.map(c=>`<option value="${c.id}">${c.icon} ${esc(catName(c.id))}</option>`).join('')}</optgroup>`).join('');
   app.innerHTML = `
     <div class="page"><div class="wrap">
-      <div class="page-head"><h1>Publier une annonce</h1><p>Décrivez ce que vous proposez. Vous pourrez l\'activer par code prépayé juste après.</p></div>
+      <div class="page-head"><h1>${t('post_title')}</h1><p>${t('post_sub')}</p></div>
       <div class="form-card">
-        <div class="field"><label>Catégorie</label>
-          <select class="select" id="pCat" onchange="onCatChange()"><option value="">— Choisir une catégorie —</option>${catOptions}</select></div>
-        <div class="field"><label>Titre de l\'annonce <span class="hint">— court et clair</span></label>
-          <input class="input" id="pTitle" maxlength="90" placeholder="Ex : Plombier — dépannage rapide 7j/7" /></div>
-        <div class="field"><label>Description</label>
-          <textarea class="textarea" id="pDesc" maxlength="1200" placeholder="Détaillez vos prestations, votre expérience, vos zones d\'intervention…"></textarea></div>
+        <div class="field"><label>${t('f_cat')}</label>
+          <select class="select" id="pCat" onchange="onCatChange()"><option value="">${t('choose_cat')}</option>${catOptions}</select></div>
+        <div class="field"><label>${t('f_ad_title')} <span class="hint">${t('f_ad_title_hint')}</span></label>
+          <input class="input" id="pTitle" maxlength="90" placeholder="${t('ph_ad_title')}" /></div>
+        <div class="field"><label>${t('f_desc')}</label>
+          <textarea class="textarea" id="pDesc" maxlength="1200" placeholder="${t('ph_desc')}"></textarea></div>
         <div class="grid-2">
-          <div class="field"><label>Gouvernorat</label>
-            <select class="select" id="pGov"><option value="">— Choisir —</option>${GOVERNORATES.map(g=>`<option>${g}</option>`).join('')}</select></div>
-          <div class="field"><label>Ville / Quartier <span class="hint">(optionnel)</span></label>
-            <input class="input" id="pArea" placeholder="Ex : La Marsa" /></div>
+          <div class="field"><label>${t('f_gov')}</label>
+            <select class="select" id="pGov"><option value="">${t('choose')}</option>${GOVERNORATES.map(g=>`<option value="${g}">${govDisplay(g)}</option>`).join('')}</select></div>
+          <div class="field"><label>${t('f_city')} <span class="hint">${t('optional')}</span></label>
+            <input class="input" id="pArea" placeholder="${t('ph_city')}" /></div>
         </div>
         <div class="grid-2">
-          <div class="field"><label>Tarif <span class="hint">(vide = sur devis)</span></label>
-            <input class="input" id="pPrice" inputmode="decimal" placeholder="Ex : 40" /></div>
-          <div class="field"><label>Unité</label>
-            <select class="select" id="pUnit">${PRICE_UNITS.map(u=>`<option value="${u.v}">${u.l}</option>`).join('')}</select></div>
+          <div class="field"><label>${t('f_price')} <span class="hint">${t('price_hint')}</span></label>
+            <input class="input" id="pPrice" inputmode="decimal" placeholder="${t('ph_price')}" /></div>
+          <div class="field"><label>${t('f_unit')}</label>
+            <select class="select" id="pUnit">${PRICE_UNITS.map(u=>`<option value="${u.v}">${unitLabel(u.v)}</option>`).join('')}</select></div>
         </div>
-        <div class="field" id="driverRow" style="display:none"><label>Location</label>
+        <div class="field" id="driverRow" style="display:none"><label>${t('f_rental')}</label>
           <div class="seg">
-            <button type="button" id="drvYes" class="on" onclick="setDriver(true)">🧑‍✈️ Avec chauffeur / opérateur</button>
-            <button type="button" id="drvNo" onclick="setDriver(false)">🔑 Sans chauffeur</button>
+            <button type="button" id="drvYes" class="on" onclick="setDriver(true)">${t('with_driver_btn')}</button>
+            <button type="button" id="drvNo" onclick="setDriver(false)">${t('without_driver_btn')}</button>
           </div>
         </div>
-        <div class="field"><label>Téléphone de contact</label>
+        <div class="field"><label>${t('f_phone')}</label>
           <input class="input" id="pPhone" value="${esc(u.phone)}" placeholder="+216 XX XXX XXX" /></div>
-        <div class="field"><label>Photos <span class="hint">— vos réalisations, votre véhicule… (jusqu\'à 6)</span></label>
+        <div class="field"><label>${t('f_photos')} <span class="hint">${t('photos_hint')}</span></label>
           <div class="drop" id="drop" onclick="$('#pFile').click()"><div class="big">📷</div>
-            <div>Cliquez ou glissez vos photos ici</div>
-            <div style="font-size:12px;margin-top:4px">JPG / PNG · redimensionnées automatiquement</div></div>
+            <div>${t('drop_click')}</div>
+            <div style="font-size:12px;margin-top:4px">${t('drop_formats')}</div></div>
           <input type="file" id="pFile" accept="image/*" multiple hidden />
           <div class="thumbs" id="pThumbs"></div>
         </div>
-        <button class="btn btn-primary btn-block" id="pSubmit" style="margin-top:8px" onclick="submitAd()">Créer mon annonce</button>
-        <div class="notice sun" style="margin-top:14px">Votre annonce sera enregistrée puis <strong>activée par code prépayé</strong> pour devenir visible. Prochaine étape après création : l\'activation.</div>
+        <button class="btn btn-primary btn-block" id="pSubmit" style="margin-top:8px" onclick="submitAd()">${t('create_ad')}</button>
+        <div class="notice sun" style="margin-top:14px">${t('post_note')}</div>
       </div>
     </div></div>`;
   setupDropzone();
@@ -1038,9 +1342,9 @@ function setupDropzone(){
 }
 async function addPhotos(files){
   for(const f of files){
-    if(draft.photos.length>=6){ toast('Maximum 6 photos.'); break; }
+    if(draft.photos.length>=6){ toast(t('max_photos')); break; }
     if(!f.type.startsWith('image/')) continue;
-    try{ draft.photos.push(await compress(f)); }catch{ toast('Une image n\'a pas pu être ajoutée.'); }
+    try{ draft.photos.push(await compress(f)); }catch{ toast(t('img_fail')); }
   }
   renderThumbs();
 }
@@ -1052,21 +1356,21 @@ window.submitAd = async function(){
   const u = currentUser(); if(!u) return navigate('#/login?next=/post');
   const category = $('#pCat').value; const title = $('#pTitle').value.trim();
   const gov = $('#pGov').value; const phone = normPhone($('#pPhone').value);
-  if(!category) return toast('Choisissez une catégorie.');
-  if(title.length<6) return toast('Donnez un titre plus descriptif.');
-  if(!gov) return toast('Choisissez un gouvernorat.');
-  if(!/^\+216\d{8}$/.test(phone)) return toast('Numéro de téléphone invalide.');
-  const btn = $('#pSubmit'); btn.disabled = true; btn.textContent = 'Publication…';
+  if(!category) return toast(t('choose_cat_toast'));
+  if(title.length<6) return toast(t('title_short'));
+  if(!gov) return toast(t('choose_gov'));
+  if(!/^\+216\d{8}$/.test(phone)) return toast(t('phone_invalid'));
+  const btn = $('#pSubmit'); btn.disabled = true; btn.textContent = t('publishing');
   try{
     const d = await apiFetch('/listings', { method:'POST', auth:true, body:{
       category, title, desc:$('#pDesc').value.trim(), gov, area:$('#pArea').value.trim(),
       price:$('#pPrice').value.trim().replace(',','.'), unit:$('#pUnit').value,
       withDriver: isVehicle(category)?draft.withDriver:false, phone, photos:draft.photos,
     }});
-    if(d.subActive){ toast('Annonce publiée et en ligne ✅'); navigate('#/dashboard'); }
-    else { toast('Annonce créée. Activez votre abonnement pour la rendre visible.'); navigate('#/activate'); }
+    if(d.subActive){ toast(t('ad_online')); navigate('#/dashboard'); }
+    else { toast(t('ad_created')); navigate('#/activate'); }
   }catch(e){
-    btn.disabled=false; btn.textContent='Créer mon annonce';
+    btn.disabled=false; btn.textContent=t('create_ad');
     toast(e.message);
     if(e.status===401){ clearSession(); navigate('#/login?next=/post'); }
   }
@@ -1079,44 +1383,44 @@ function viewActivate(){
   const u = currentUser();
   app.innerHTML = `
     <div class="page"><div class="wrap" style="max-width:720px">
-      <div class="page-head"><h1>Activer mon abonnement</h1><p>Rendez vos annonces visibles partout en Tunisie grâce à un code prépayé.</p></div>
-      ${u && subActive(u) ? `<div class="notice ok" style="margin-bottom:20px">✅ Votre abonnement est actif jusqu\'au ${new Date(u.subUntil).toLocaleDateString('fr-FR')}. Vos annonces sont visibles.</div>`:''}
+      <div class="page-head"><h1>${t('act_title')}</h1><p>${t('act_sub')}</p></div>
+      ${u && subActive(u) ? `<div class="notice ok" style="margin-bottom:20px">${t('act_active_prefix')} ${fmtDate(u.subUntil)}${t('act_active_suffix')}</div>`:''}
       <div class="form-card" style="max-width:none">
-        <h3 style="font-size:17px;margin-bottom:4px">J\'ai déjà un code</h3>
-        <p style="color:var(--muted);font-size:14px;margin:0 0 14px">Entrez votre code d\'activation pour mettre vos annonces en ligne immédiatement.</p>
+        <h3 style="font-size:17px;margin-bottom:4px">${t('act_have_code')}</h3>
+        <p style="color:var(--muted);font-size:14px;margin:0 0 14px">${t('act_have_code_sub')}</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <input class="input" id="codeInput" placeholder="KD-XXXX-XXXX" style="flex:1;min-width:200px;font-family:var(--fd);font-weight:700;letter-spacing:1px;text-transform:uppercase" />
-          <button class="btn btn-primary" id="redeemBtn" onclick="redeem()">Activer</button>
+          <button class="btn btn-primary" id="redeemBtn" onclick="redeem()">${t('activate_btn')}</button>
         </div>
-        ${!u ? '<div class="notice blue" style="margin-top:14px">Connectez-vous d\'abord pour lier le code à votre compte. <a href="#/login?next=/activate" style="font-weight:700">Se connecter →</a></div>':''}
+        ${!u ? `<div class="notice blue" style="margin-top:14px">${t('act_login_first')} <a href="#/login?next=/activate" style="font-weight:700">${t('login_arrow')}</a></div>`:''}
       </div>
       <div class="plan-row" style="margin-top:30px">
-        <div class="plan"><div class="pname">Mensuel</div><div class="pprice">${CFG.PRICE_MONTH}</div></div>
-        <div class="plan" style="border-color:var(--blue)"><div class="pname">Annuel</div><div class="pprice">${CFG.PRICE_YEAR}</div><div class="psave">2 mois offerts</div></div>
+        <div class="plan"><div class="pname">${t('plan_month')}</div><div class="pprice">${CFG.PRICE_MONTH}</div></div>
+        <div class="plan" style="border-color:var(--blue)"><div class="pname">${t('plan_year')}</div><div class="pprice">${CFG.PRICE_YEAR}</div><div class="psave">${t('plan_save')}</div></div>
       </div>
       <div class="form-card" style="max-width:none">
-        <h3 style="font-size:17px;margin-bottom:14px">Je n\'ai pas encore de code</h3>
+        <h3 style="font-size:17px;margin-bottom:14px">${t('act_no_code')}</h3>
         <div class="pay-methods">
           <button class="pay-tab on" id="tabFlouci" onclick="payTab('flouci')">📱 Flouci</button>
-          <button class="pay-tab" id="tabCcp" onclick="payTab('ccp')">🏤 CCP / La Poste</button>
+          <button class="pay-tab" id="tabCcp" onclick="payTab('ccp')">${t('tab_ccp')}</button>
         </div>
         <div class="pay-panel on" id="panelFlouci">
-          <div class="acct-card"><div class="acct-label">Numéro Flouci</div><div class="acct-num">${CFG.FLOUCI}</div>
-            <div class="acct-name">Khedmain — Compte officiel</div>
-            <button class="copy-btn" onclick="copyVal('${CFG.FLOUCI.replace(/\s/g,'')}',this)">📋 Copier le numéro</button></div>
+          <div class="acct-card"><div class="acct-label">${t('flouci_num')}</div><div class="acct-num">${CFG.FLOUCI}</div>
+            <div class="acct-name">${t('official_account')}</div>
+            <button class="copy-btn" onclick="copyVal('${CFG.FLOUCI.replace(/\s/g,'')}',this)">${t('copy_num')}</button></div>
         </div>
         <div class="pay-panel" id="panelCcp">
-          <div class="acct-card"><div class="acct-label">Compte CCP</div><div class="acct-num">${CFG.CCP}</div>
-            <div class="acct-name">Khedmain — Compte officiel</div>
-            <button class="copy-btn" onclick="copyVal('${CFG.CCP}',this)">📋 Copier le numéro</button></div>
-          <div class="notice sun" style="margin-top:14px">🏤 Déposez des espèces dans n\'importe quel bureau de poste avec ce numéro, ou faites un virement CCP. Gardez le reçu.</div>
+          <div class="acct-card"><div class="acct-label">${t('ccp_account')}</div><div class="acct-num">${CFG.CCP}</div>
+            <div class="acct-name">${t('official_account')}</div>
+            <button class="copy-btn" onclick="copyVal('${CFG.CCP}',this)">${t('copy_num')}</button></div>
+          <div class="notice sun" style="margin-top:14px">${t('ccp_note')}</div>
         </div>
         <div style="margin-top:22px">
-          <div class="pstep"><div class="pn">1</div><div><h3>Payez le montant de votre plan</h3><p>Mensuel ${CFG.PRICE_MONTH} ou annuel ${CFG.PRICE_YEAR}, via Flouci ou CCP.</p></div></div>
-          <div class="pstep"><div class="pn">2</div><div><h3>Envoyez la preuve sur WhatsApp</h3><p>Capture Flouci ou photo du reçu, avec votre numéro inscrit.</p>
-            <a class="btn btn-wa btn-sm" style="margin-top:10px" target="_blank" href="${waLink('Bonjour Khedmain, voici ma preuve de paiement pour activer mon abonnement. Mon numéro inscrit : ')}">💬 Envoyer la preuve</a></div></div>
-          <div class="pstep"><div class="pn">3</div><div><h3>Recevez votre code</h3><p>Nous vérifions et vous envoyons votre code par WhatsApp, généralement en moins d\'une heure.</p></div></div>
-          <div class="pstep"><div class="pn">4</div><div><h3>Activez-le ci-dessus</h3><p>Entrez le code dans le champ en haut de cette page. Vos annonces passent en ligne aussitôt.</p></div></div>
+          <div class="pstep"><div class="pn">1</div><div><h3>${t('ps1_t')}</h3><p>${t('ps1_d').replace('{m}',CFG.PRICE_MONTH).replace('{y}',CFG.PRICE_YEAR)}</p></div></div>
+          <div class="pstep"><div class="pn">2</div><div><h3>${t('ps2_t')}</h3><p>${t('ps2_d')}</p>
+            <a class="btn btn-wa btn-sm" style="margin-top:10px" target="_blank" href="${waLink(t('wa_proof_msg'))}">${t('send_proof')}</a></div></div>
+          <div class="pstep"><div class="pn">3</div><div><h3>${t('ps3_t')}</h3><p>${t('ps3_d')}</p></div></div>
+          <div class="pstep"><div class="pn">4</div><div><h3>${t('ps4_t')}</h3><p>${t('ps4_d')}</p></div></div>
         </div>
       </div>
     </div></div>`;
@@ -1127,22 +1431,22 @@ window.payTab = function(m){
 };
 window.copyVal = function(val, btn){
   navigator.clipboard.writeText(val).then(()=>{
-    const o = btn.textContent; btn.classList.add('done'); btn.textContent='✓ Copié';
+    const o = btn.textContent; btn.classList.add('done'); btn.textContent=t('copied');
     setTimeout(()=>{ btn.classList.remove('done'); btn.textContent=o; },1800);
   });
 };
 window.redeem = async function(){
   const u = currentUser(); if(!u) return navigate('#/login?next=/activate');
   const raw = ($('#codeInput').value||'').trim().toUpperCase();
-  if(!raw) return toast('Entrez votre code.');
-  const btn = $('#redeemBtn'); btn.disabled = true; btn.textContent = 'Activation…';
+  if(!raw) return toast(t('enter_code'));
+  const btn = $('#redeemBtn'); btn.disabled = true; btn.textContent = t('activating');
   try{
     const d = await apiFetch('/subscription/redeem', { method:'POST', auth:true, body:{ code: raw } });
     ME.subUntil = d.subUntil; localStorage.setItem('kd_user', JSON.stringify(ME));
-    toast(`Abonnement ${d.plan==='year'?'annuel':'mensuel'} activé ✅`);
+    toast(`${t('sub_activated_prefix')} ${planLabel(d.plan)} ${t('sub_activated_suffix')}`);
     navigate('#/dashboard');
   }catch(e){
-    btn.disabled=false; btn.textContent='Activer';
+    btn.disabled=false; btn.textContent=t('activate_btn');
     toast(e.message);
     if(e.status===401){ clearSession(); navigate('#/login?next=/activate'); }
   }
@@ -1159,34 +1463,34 @@ function viewLogin({params}){
     app.innerHTML = `
       <div class="page"><div class="wrap form-narrow">
         <div class="form-card">
-          <h1 style="font-size:24px;text-align:center;margin-bottom:4px">${mode==='login'?'Connexion':'Créer un compte'}</h1>
-          <p style="text-align:center;color:var(--muted);font-size:14px;margin-bottom:22px">${mode==='login'?'Accédez à votre espace prestataire.':'Rejoignez Khedmain en une minute.'}</p>
-          ${mode==='register' ? `<div class="field"><label>Nom complet</label><input class="input" id="lName" placeholder="Prénom Nom" /></div>` : ''}
-          <div class="field"><label>Téléphone</label><input class="input" id="lPhone" placeholder="+216 XX XXX XXX" /></div>
-          <div class="field"><label>Mot de passe</label><input class="input" type="password" id="lPass" placeholder="••••••" /></div>
-          <button class="btn btn-primary btn-block" id="authBtn" onclick="doAuth('${mode}')">${mode==='login'?'Se connecter':'Créer mon compte'}</button>
+          <h1 style="font-size:24px;text-align:center;margin-bottom:4px">${mode==='login'?t('login_title'):t('register_title')}</h1>
+          <p style="text-align:center;color:var(--muted);font-size:14px;margin-bottom:22px">${mode==='login'?t('login_sub'):t('register_sub')}</p>
+          ${mode==='register' ? `<div class="field"><label>${t('f_fullname')}</label><input class="input" id="lName" placeholder="${t('ph_fullname')}" /></div>` : ''}
+          <div class="field"><label>${t('f_phone2')}</label><input class="input" id="lPhone" placeholder="+216 XX XXX XXX" /></div>
+          <div class="field"><label>${t('f_password')}</label><input class="input" type="password" id="lPass" placeholder="••••••" /></div>
+          <button class="btn btn-primary btn-block" id="authBtn" onclick="doAuth('${mode}')">${mode==='login'?t('login_btn'):t('register_btn')}</button>
           <div class="switch-line">${mode==='login'
-            ? `Pas encore de compte ? <a href="#" onclick="switchAuth('register');return false;">S\'inscrire</a>`
-            : `Déjà inscrit ? <a href="#" onclick="switchAuth('login');return false;">Se connecter</a>`}</div>
+            ? `${t('no_account')} <a href="#" onclick="switchAuth('register');return false;">${t('register_link')}</a>`
+            : `${t('have_account')} <a href="#" onclick="switchAuth('login');return false;">${t('login_link')}</a>`}</div>
         </div>
       </div></div>`;
   }
   window.switchAuth = (m)=>{ mode=m; render(); };
   window.doAuth = async (m)=>{
     const phone = normPhone($('#lPhone').value); const pass = $('#lPass').value;
-    if(!/^\+216\d{8}$/.test(phone)) return toast('Numéro invalide (format +216 XX XXX XXX).');
-    if(pass.length<4) return toast('Mot de passe trop court.');
-    const btn = $('#authBtn'); btn.disabled = true; const label = btn.textContent; btn.textContent = 'Un instant…';
+    if(!/^\+216\d{8}$/.test(phone)) return toast(t('phone_invalid2'));
+    if(pass.length<4) return toast(t('pass_short'));
+    const btn = $('#authBtn'); btn.disabled = true; const label = btn.textContent; btn.textContent = t('one_moment');
     try{
       let d;
       if(m==='login'){
         d = await apiFetch('/auth/login', { method:'POST', body:{ phone, password:pass } });
-        toast('Bienvenue '+d.user.name.split(' ')[0]+' 👋');
+        toast(t('welcome')+' '+d.user.name.split(' ')[0]+' 👋');
       } else {
         const name = $('#lName').value.trim();
-        if(name.length<3){ btn.disabled=false; btn.textContent=label; return toast('Entrez votre nom complet.'); }
+        if(name.length<3){ btn.disabled=false; btn.textContent=label; return toast(t('enter_fullname')); }
         d = await apiFetch('/auth/register', { method:'POST', body:{ name, phone, password:pass } });
-        toast('Compte créé ✅');
+        toast(t('account_created'));
       }
       setSession(d.token, d.user);
       navigate(d.user.isAdmin ? '#/admin' : next);
@@ -1200,7 +1504,7 @@ function viewLogin({params}){
 function viewDashboard(){
   const u = currentUser();
   if(!u) return navigate('#/login?next=/dashboard');
-  loading('Chargement de votre espace…');
+  loading(t('loading'));
   apiFetch('/listings/mine', { auth:true }).then(d => {
     const mine = d.listings || []; const active = d.subActive;
     // keep cached sub status roughly in sync
@@ -1208,110 +1512,194 @@ function viewDashboard(){
     app.innerHTML = `
       <div class="page"><div class="wrap">
         <div class="page-head" style="display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap">
-          <div><h1>Bonjour, ${esc(u.name.split(' ')[0])} 👋</h1><p>Gérez vos annonces et votre abonnement.</p></div>
+          <div><h1>${t('hello')} ${esc(u.name.split(' ')[0])} 👋</h1><p>${t('dash_sub')}</p></div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
-            ${u.isAdmin ? '<a href="#/admin" class="btn btn-dark">🛠️ Administration</a>' : ''}
-            <a href="#/post" class="btn btn-sun">+ Nouvelle annonce</a>
-            <button class="btn btn-ghost" onclick="logout()">Déconnexion</button>
+            ${u.isAdmin ? `<a href="#/admin" class="btn btn-dark">${t('admin_btn')}</a>` : ''}
+            <a href="#/post" class="btn btn-sun">${t('new_ad')}</a>
+            <button class="btn btn-ghost" onclick="logout()">${t('nav_logout')}</button>
           </div>
         </div>
         <div class="dash-cards">
           <div class="dash-card">
-            <div class="lab">Abonnement</div>
-            <div class="val">${active ? '<span style="color:var(--ok)">Actif</span>' : '<span style="color:var(--warn)">Inactif</span>'}</div>
-            <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${active ? (u.subUntil?('Jusqu\'au '+new Date(u.subUntil).toLocaleDateString('fr-FR')):'En ligne') : 'Vos annonces ne sont pas visibles.'}</div>
-            ${!active ? '<a href="#/activate" class="btn btn-primary btn-sm" style="margin-top:12px">Activer maintenant</a>' : '<a href="#/activate" class="btn btn-ghost btn-sm" style="margin-top:12px">Prolonger</a>'}
+            <div class="lab">${t('sub_label')}</div>
+            <div class="val">${active ? `<span style="color:var(--ok)">${t('active')}</span>` : `<span style="color:var(--warn)">${t('inactive')}</span>`}</div>
+            <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${active ? (u.subUntil?(t('until')+' '+fmtDate(u.subUntil)):t('online')) : t('not_visible')}</div>
+            ${!active ? `<a href="#/activate" class="btn btn-primary btn-sm" style="margin-top:12px">${t('activate_now')}</a>` : `<a href="#/activate" class="btn btn-ghost btn-sm" style="margin-top:12px">${t('extend')}</a>`}
           </div>
           <div class="dash-card">
-            <div class="lab">Mes annonces</div><div class="val">${mine.length}</div>
-            <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${active?'En ligne et visibles':'En attente d\'activation'}</div>
+            <div class="lab">${t('my_ads')}</div><div class="val">${mine.length}</div>
+            <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${active?t('online_visible'):t('pending_activation')}</div>
           </div>
         </div>
-        <h2 style="font-size:19px;margin-bottom:14px">Mes annonces</h2>
+        <h2 style="font-size:19px;margin-bottom:14px">${t('my_ads')}</h2>
         <div style="display:flex;flex-direction:column;gap:12px">
           ${mine.length ? mine.map(l=>`
             <div class="my-listing">
               <img src="${firstPhoto(l)}" alt=""/>
               <div class="ml-info"><div class="ml-title">${esc(l.title)}</div>
-                <div class="ml-meta">${esc(CAT_BY_ID[l.category]?.name||'')} · 📍 ${esc(l.gov)} · ${l.price?esc(l.price)+' DT '+esc(unitLabel(l.unit)):'Sur devis'}</div></div>
-              <span class="badge ${active?'live':'pending'}">${active?'● En ligne':'⏳ En attente'}</span>
+                <div class="ml-meta">${esc(catName(l.category))} · 📍 ${esc(govDisplay(l.gov))} · ${l.price?esc(l.price)+' '+t('dt')+' '+esc(unitLabel(l.unit)):t('sur_devis')}</div></div>
+              <span class="badge ${active?'live':'pending'}">${active?t('badge_online'):t('badge_pending')}</span>
               <div style="display:flex;gap:6px">
-                <a href="#/listing/${l.id}" class="btn btn-ghost btn-sm">Voir</a>
-                <button class="btn btn-ghost btn-sm" onclick="delListing('${l.id}')" aria-label="Supprimer">🗑️</button>
+                <a href="#/listing/${l.id}" class="btn btn-ghost btn-sm">${t('view')}</a>
+                <button class="btn btn-ghost btn-sm" onclick="delListing('${l.id}')" aria-label="${t('confirm_delete')}">🗑️</button>
               </div>
-            </div>`).join('') : emptyBlock('Vous n\'avez pas encore d\'annonce. Publiez-en une pour commencer.')}
+            </div>`).join('') : emptyBlock(t('dash_empty'))}
         </div>
       </div></div>`;
   }).catch(e => {
     if(e.status===401){ clearSession(); return navigate('#/login?next=/dashboard'); }
-    errorState('Impossible de charger votre espace.', viewDashboard);
+    errorState(t('dash_load_err'), viewDashboard);
   });
 }
 window.delListing = async function(id){
-  if(!confirm('Supprimer cette annonce ?')) return;
-  try{ await apiFetch('/listings/'+id, { method:'DELETE', auth:true }); toast('Annonce supprimée.'); viewDashboard(); }
+  if(!confirm(t('confirm_delete'))) return;
+  try{ await apiFetch('/listings/'+id, { method:'DELETE', auth:true }); toast(t('ad_deleted')); viewDashboard(); }
   catch(e){ toast(e.message); if(e.status===401){ clearSession(); navigate('#/login'); } }
 };
 
 /* ============================================================================
-   VIEW: ADMIN
+   VIEW: ADMIN  (tabbed: Prestataires · Annonces · Codes)
    ============================================================================ */
+let adminTab = 'providers';
+function adminDenied(){ app.innerHTML = `<div class="page"><div class="wrap form-narrow">${emptyBlock(t('admin_denied'))}</div></div>`; }
 function viewAdmin(){
   const u = currentUser();
   if(!u){ return navigate('#/login?next=/admin'); }
-  if(!u.isAdmin){
-    app.innerHTML = `<div class="page"><div class="wrap form-narrow">${emptyBlock('Accès réservé à l\'administrateur.')}</div></div>`;
-    return;
-  }
-  loading('Chargement de l\'administration…');
-  Promise.all([ apiFetch('/admin/stats', { auth:true }), apiFetch('/admin/codes', { auth:true }) ])
-    .then(([stats, codesRes]) => {
-      const codes = codesRes.codes || [];
-      app.innerHTML = `
-        <div class="page"><div class="wrap">
-          <div class="page-head" style="display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap">
-            <div><h1>Administration Khedmain</h1><p>Générez et suivez les codes prépayés.</p></div>
-            <div style="display:flex;gap:10px"><a href="#/dashboard" class="btn btn-ghost">Mon espace</a><button class="btn btn-ghost" onclick="logout()">Déconnexion</button></div>
-          </div>
-          <div class="dash-cards" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
-            <div class="dash-card"><div class="lab">Prestataires</div><div class="val">${stats.users}</div></div>
-            <div class="dash-card"><div class="lab">Annonces</div><div class="val">${stats.listings}</div></div>
-            <div class="dash-card"><div class="lab">Codes libres</div><div class="val">${stats.freeCodes}</div></div>
-            <div class="dash-card"><div class="lab">Codes utilisés</div><div class="val">${stats.codes - stats.freeCodes}</div></div>
-          </div>
-          <div class="form-card" style="max-width:none;margin-bottom:22px">
-            <h3 style="font-size:16px;margin-bottom:12px">Générer des codes</h3>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:end">
-              <div class="field" style="margin:0"><label>Plan</label>
-                <select class="select" id="genPlan"><option value="month">Mensuel</option><option value="year">Annuel</option></select></div>
-              <div class="field" style="margin:0"><label>Quantité</label>
-                <input class="input" id="genQty" type="number" value="1" min="1" max="50" style="width:90px" /></div>
-              <button class="btn btn-primary" id="genBtn" onclick="genCodes()">Générer</button>
-            </div>
-          </div>
-          <h3 style="font-size:16px;margin-bottom:12px">Codes libres (${codes.length})</h3>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            ${codes.length ? codes.map(c=>`
-              <div class="my-listing" style="align-items:center">
-                <div class="ml-info"><div class="ml-title" style="font-family:var(--fd);letter-spacing:1px">${esc(c.code)}</div>
-                  <div class="ml-meta">Plan ${c.plan==='year'?'annuel':'mensuel'}</div></div>
-                <button class="btn btn-ghost btn-sm" onclick="copyVal('${c.code}',this)">📋 Copier</button>
-              </div>`).join('') : emptyBlock('Aucun code libre. Générez-en.')}
-          </div>
-        </div></div>`;
-    }).catch(e => {
-      if(e.status===401){ clearSession(); return navigate('#/login?next=/admin'); }
-      if(e.status===403){ app.innerHTML = `<div class="page"><div class="wrap form-narrow">${emptyBlock('Accès réservé à l\'administrateur.')}</div></div>`; return; }
-      errorState('Impossible de charger l\'administration.', viewAdmin);
-    });
+  if(!u.isAdmin){ return adminDenied(); }
+  loading(t('admin_load'));
+  apiFetch('/admin/stats', { auth:true }).then(stats => {
+    app.innerHTML = `
+      <div class="page"><div class="wrap">
+        <div class="page-head" style="display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap">
+          <div><h1>${t('admin_title')}</h1><p>${t('admin_sub')}</p></div>
+          <div style="display:flex;gap:10px"><a href="#/dashboard" class="btn btn-ghost">${t('nav_myspace')}</a><button class="btn btn-ghost" onclick="logout()">${t('nav_logout')}</button></div>
+        </div>
+        <div class="dash-cards" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+          <div class="dash-card"><div class="lab">${t('stat_providers')}</div><div class="val">${stats.users}</div></div>
+          <div class="dash-card"><div class="lab">${t('stat_listings')}</div><div class="val">${stats.listings}</div></div>
+          <div class="dash-card"><div class="lab">${t('stat_free_codes')}</div><div class="val">${stats.freeCodes}</div></div>
+          <div class="dash-card"><div class="lab">${t('stat_used_codes')}</div><div class="val">${stats.codes - stats.freeCodes}</div></div>
+        </div>
+        <div class="seg" style="margin:6px 0 20px">
+          <button id="tabproviders" onclick="setAdminTab('providers')">${t('tab_providers')}</button>
+          <button id="tablistings" onclick="setAdminTab('listings')">${t('tab_listings')}</button>
+          <button id="tabcodes" onclick="setAdminTab('codes')">${t('tab_codes')}</button>
+        </div>
+        <div id="adminBody"></div>
+      </div></div>`;
+    setAdminTab(adminTab);
+  }).catch(e => {
+    if(e.status===401){ clearSession(); return navigate('#/login?next=/admin'); }
+    if(e.status===403){ return adminDenied(); }
+    errorState(t('admin_load'), viewAdmin);
+  });
+}
+window.setAdminTab = function(tab){
+  adminTab = tab;
+  ['providers','listings','codes'].forEach(x => { const b = $('#tab'+x); if(b) b.classList.toggle('on', x===tab); });
+  const body = $('#adminBody'); if(body) body.innerHTML = `<div class="empty"><div class="big">⏳</div><p>${t('loading')}</p></div>`;
+  if(tab==='providers') loadProviders();
+  else if(tab==='listings') loadAdminListings();
+  else loadAdminCodes();
+};
+
+/* ---- Providers tab ------------------------------------------------------ */
+function loadProviders(){
+  apiFetch('/admin/providers', { auth:true }).then(d => {
+    const body = $('#adminBody'); if(!body) return;
+    const list = d.providers || [];
+    body.innerHTML = list.length ? list.map(providerRow).join('') : emptyBlock(t('no_providers'));
+  }).catch(() => { const body=$('#adminBody'); if(body) body.innerHTML = emptyBlock(t('load_err')); });
+}
+function providerRow(p){
+  const active = p.subUntil > now();
+  return `
+    <div class="my-listing" style="align-items:center;flex-wrap:wrap">
+      <div class="ml-info" style="min-width:220px">
+        <div class="ml-title">${esc(p.name)}
+          ${p.verified?`<span class="chip-mini" style="background:var(--ok-tint);color:var(--ok)">${t('verified_chip')}</span>`:''}
+          ${p.isAdmin?`<span class="chip-mini">${t('admin_chip')}</span>`:''}
+          ${p.blocked?`<span class="chip-mini" style="background:#fde8e8;color:#c0392b">${t('suspended_chip')}</span>`:''}</div>
+        <div class="ml-meta">📞 ${esc(p.phone)} · ${countAnnonces(p.listingCount)} · ${active?`<span style="color:var(--ok)">${t('subscribed')}</span>`:`<span style="color:var(--warn)">${t('not_subscribed')}</span>`}${active&&p.subUntil?(' ('+t('until')+' '+fmtDate(p.subUntil)+')'):''}</div>
+      </div>
+      ${p.isAdmin ? '' : `
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="provFlag('${p.id}','verified',${!p.verified})">${p.verified?t('remove_verif'):t('verify_btn')}</button>
+        <button class="btn btn-ghost btn-sm" onclick="provSub('${p.id}','${active?'revoke':'month'}')">${active?t('revoke_sub'):t('grant_month')}</button>
+        <button class="btn ${p.blocked?'btn-primary':'btn-ghost'} btn-sm" onclick="provFlag('${p.id}','blocked',${!p.blocked})">${p.blocked?t('reactivate'):t('suspend')}</button>
+      </div>`}
+    </div>`;
+}
+window.provFlag = async function(id, flag, val){
+  try{ const body = {}; body[flag] = val;
+    await apiFetch('/admin/providers/'+id+'/flags', { method:'POST', auth:true, body });
+    toast(t('provider_updated')); loadProviders();
+  }catch(e){ toast(e.message); }
+};
+window.provSub = async function(id, action){
+  try{ await apiFetch('/admin/providers/'+id+'/subscription', { method:'POST', auth:true, body:{ action } });
+    toast(action==='revoke'?t('sub_revoked'):t('sub_granted')); loadProviders();
+  }catch(e){ toast(e.message); }
+};
+
+/* ---- Listings tab ------------------------------------------------------- */
+function loadAdminListings(){
+  apiFetch('/admin/listings', { auth:true }).then(d => {
+    const body = $('#adminBody'); if(!body) return;
+    const list = d.listings || [];
+    body.innerHTML = list.length ? list.map(l => `
+      <div class="my-listing" style="align-items:center;flex-wrap:wrap">
+        <img src="${firstPhoto(l)}" alt=""/>
+        <div class="ml-info" style="min-width:200px">
+          <div class="ml-title">${esc(l.title)} ${l.status==='disabled'?`<span class="chip-mini" style="background:#fde8e8;color:#c0392b">${t('disabled_chip')}</span>`:''}</div>
+          <div class="ml-meta">${esc(catName(l.category))} · 📍 ${esc(govDisplay(l.gov))} · 👤 ${esc(l.ownerName||'')}</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <a href="#/listing/${l.id}" class="btn btn-ghost btn-sm">${t('view')}</a>
+          <button class="btn ${l.status==='disabled'?'btn-primary':'btn-ghost'} btn-sm" onclick="listStatus('${l.id}','${l.status==='disabled'?'active':'disabled'}')">${l.status==='disabled'?t('reactivate'):t('disable')}</button>
+        </div>
+      </div>`).join('') : emptyBlock(t('no_ads'));
+  }).catch(() => { const body=$('#adminBody'); if(body) body.innerHTML = emptyBlock(t('load_err')); });
+}
+window.listStatus = async function(id, status){
+  try{ await apiFetch('/admin/listings/'+id+'/status', { method:'POST', auth:true, body:{ status } });
+    toast(t('ad_updated')); loadAdminListings();
+  }catch(e){ toast(e.message); }
+};
+
+/* ---- Codes tab ---------------------------------------------------------- */
+function loadAdminCodes(){
+  apiFetch('/admin/codes', { auth:true }).then(d => {
+    const codes = d.codes || []; const body = $('#adminBody'); if(!body) return;
+    body.innerHTML = `
+      <div class="form-card" style="max-width:none;margin-bottom:22px">
+        <h3 style="font-size:16px;margin-bottom:12px">${t('gen_codes')}</h3>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:end">
+          <div class="field" style="margin:0"><label>${t('f_plan')}</label>
+            <select class="select" id="genPlan"><option value="month">${t('plan_month')}</option><option value="year">${t('plan_year')}</option></select></div>
+          <div class="field" style="margin:0"><label>${t('f_qty')}</label>
+            <input class="input" id="genQty" type="number" value="1" min="1" max="50" style="width:90px" /></div>
+          <button class="btn btn-primary" id="genBtn" onclick="genCodes()">${t('generate')}</button>
+        </div>
+      </div>
+      <h3 style="font-size:16px;margin-bottom:12px">${t('free_codes')} (${codes.length})</h3>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${codes.length ? codes.map(c=>`
+          <div class="my-listing" style="align-items:center">
+            <div class="ml-info"><div class="ml-title" style="font-family:var(--fd);letter-spacing:1px">${esc(c.code)}</div>
+              <div class="ml-meta">${t('plan_word')} ${planLabel(c.plan)}</div></div>
+            <button class="btn btn-ghost btn-sm" onclick="copyVal('${c.code}',this)">${t('copy')}</button>
+          </div>`).join('') : emptyBlock(t('no_free_codes'))}
+      </div>`;
+  }).catch(() => { const body=$('#adminBody'); if(body) body.innerHTML = emptyBlock(t('load_err')); });
 }
 window.genCodes = async function(){
   const plan = $('#genPlan').value;
   const qty = Math.min(50, Math.max(1, parseInt($('#genQty').value)||1));
-  const btn = $('#genBtn'); btn.disabled = true; btn.textContent = 'Génération…';
+  const btn = $('#genBtn'); btn.disabled = true; btn.textContent = t('generating');
   try{ const d = await apiFetch('/admin/codes', { method:'POST', auth:true, body:{ plan, qty } });
-    toast(`${d.created.length} code(s) généré(s).`); viewAdmin(); }
-  catch(e){ btn.disabled=false; btn.textContent='Générer'; toast(e.message); }
+    toast(`${d.created.length} ${t('codes_generated')}`); loadAdminCodes();
+  }catch(e){ btn.disabled=false; btn.textContent=t('generate'); toast(e.message); }
 };
 
 /* ============================================================================
@@ -1320,18 +1708,18 @@ window.genCodes = async function(){
 function viewHelp(){
   app.innerHTML = `
     <div class="page"><div class="wrap" style="max-width:820px">
-      <div class="page-head"><h1>Comment ça marche</h1><p>Khedmain met en relation les Tunisiens avec des pros et des engins, sans intermédiaire.</p></div>
+      <div class="page-head"><h1>${t('help_title')}</h1><p>${t('help_sub')}</p></div>
       <div class="steps" style="margin-bottom:34px">
-        <div class="step"><div class="n">1</div><h3>Cherchez</h3><p>Filtrez par catégorie, gouvernorat et mot-clé pour trouver un pro ou un engin près de vous.</p></div>
-        <div class="step"><div class="n">2</div><h3>Comparez</h3><p>Consultez les photos, les tarifs et les descriptions. Choisissez en toute confiance.</p></div>
-        <div class="step"><div class="n">3</div><h3>Contactez</h3><p>Appelez ou écrivez sur WhatsApp directement. Aucune commission, aucun frais côté client.</p></div>
+        <div class="step"><div class="n">1</div><h3>${t('help_s1_t')}</h3><p>${t('help_s1_d')}</p></div>
+        <div class="step"><div class="n">2</div><h3>${t('help_s2_t')}</h3><p>${t('help_s2_d')}</p></div>
+        <div class="step"><div class="n">3</div><h3>${t('help_s3_t')}</h3><p>${t('help_s3_d')}</p></div>
       </div>
       <div class="form-card" style="max-width:none">
-        <h2 style="font-size:20px;margin-bottom:10px">Vous êtes prestataire&nbsp;?</h2>
-        <p style="color:var(--ink-2)">Créez votre compte, publiez votre annonce avec photos et tarifs, puis activez votre visibilité par <strong>code prépayé</strong> (Flouci ou CCP). Une fois activée, votre annonce apparaît dans les recherches partout en Tunisie. Vous gardez 100% de vos revenus.</p>
+        <h2 style="font-size:20px;margin-bottom:10px">${t('help_prov_title')}</h2>
+        <p style="color:var(--ink-2)">${t('help_prov_body')}</p>
         <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
-          <a href="#/post" class="btn btn-sun">Publier une annonce</a>
-          <a href="#/activate" class="btn btn-ghost">Activer par code</a>
+          <a href="#/post" class="btn btn-sun">${t('help_cta_publish')}</a>
+          <a href="#/activate" class="btn btn-ghost">${t('help_cta_activate')}</a>
         </div>
       </div>
     </div></div>`;
@@ -1339,21 +1727,11 @@ function viewHelp(){
 function viewConditions(){
   app.innerHTML = `
     <div class="page"><div class="wrap" style="max-width:760px">
-      <div class="page-head"><h1>Conditions &amp; sécurité</h1><p>Dernière mise à jour : ${new Date().toLocaleDateString('fr-FR')}</p></div>
+      <div class="page-head"><h1>${t('cond_title')}</h1><p>${t('cond_updated')} ${fmtDate(Date.now())}</p></div>
       <div class="prose" style="font-size:15px">
-<strong>1. Rôle de Khedmain.</strong> Khedmain est une plateforme de mise en relation. Nous ne sommes ni partie aux prestations, ni employeur des prestataires. Les accords, prix et travaux se concluent directement entre le client et le prestataire.
-
-<strong>2. Responsabilité.</strong> Khedmain ne garantit pas la qualité, la légalité ou la sécurité des services proposés. Vérifiez toujours l\'identité et les qualifications avant tout engagement.
-
-<strong>3. Sécurité.</strong> Rencontrez-vous dans un lieu sûr, ne versez pas d\'acompte important à l\'avance, et exigez un reçu. Signalez tout abus via WhatsApp.
-
-<strong>4. Abonnement.</strong> La visibilité d\'une annonce est conditionnée à un abonnement actif, activé par code prépayé. Les codes sont personnels et à usage unique.
-
-<strong>5. Contenu des annonces.</strong> Le prestataire est seul responsable du contenu qu\'il publie. Les annonces frauduleuses, illégales ou trompeuses sont supprimées.
-
-<strong>6. Données.</strong> Nous conservons les informations nécessaires au fonctionnement du service (compte, annonces, contacts). Vous pouvez demander la suppression de votre compte via WhatsApp.
+${t('cond_body')}
       </div>
-      <div class="notice sun" style="margin-top:22px">Ce texte est un modèle de départ à faire relire selon la réglementation tunisienne avant le lancement public.</div>
+      <div class="notice sun" style="margin-top:22px">${t('cond_disclaimer')}</div>
     </div></div>`;
 }
 
@@ -1361,6 +1739,7 @@ function viewConditions(){
    BOOT
    ============================================================================ */
 const yr = $('#yr'); if(yr) yr.textContent = new Date().getFullYear();
+applyLang();
 renderNav();
 router();
 // Verify/refresh the session token in the background
