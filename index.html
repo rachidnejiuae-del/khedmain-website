@@ -476,9 +476,10 @@ const API = (typeof window !== 'undefined' && window.KHEDMAIN_API) || 'https://k
 const CFG = {
   WHATSAPP: '21628357354',
   FLOUCI:   '+216 28 357 354',
+  D17:      '5359403644044861',   // ⇄ numéro/compte D17 à afficher (à remplacer)
   CCP:      '13130593',
-  PRICE_MONTH: '15 DT',
-  PRICE_YEAR:  '120 DT',
+  PRICE_MONTH: '5 DT',
+  PRICE_YEAR:  '50 DT',
 };
 
 /* ---------- i18n (FR / AR) ----------------------------------------------- */
@@ -551,10 +552,12 @@ const I18N = {
     act_have_code:"J'ai déjà un code", act_have_code_sub:"Entrez votre code d'activation pour mettre vos annonces en ligne immédiatement.",
     activate_btn:"Activer", act_login_first:"Connectez-vous d'abord pour lier le code à votre compte.", login_arrow:"Se connecter →",
     plan_month:"Mensuel", plan_year:"Annuel", plan_save:"2 mois offerts", act_no_code:"Je n'ai pas encore de code",
-    tab_ccp:"🏤 CCP / La Poste", flouci_num:"Numéro Flouci", official_account:"Khedmain — Compte officiel",
+    tab_ccp:"🏤 CCP / La Poste", tab_d17:"💳 D17", flouci_num:"Numéro Flouci", d17_num:"Numéro D17",
+    d17_note:"💳 Ouvrez l'application D17 (La Poste) et envoyez le montant vers ce numéro, puis envoyez la capture sur WhatsApp.",
+    official_account:"Khedmain — Compte officiel",
     copy_num:"📋 Copier le numéro", ccp_account:"Compte CCP",
     ccp_note:"🏤 Déposez des espèces dans n'importe quel bureau de poste avec ce numéro, ou faites un virement CCP. Gardez le reçu.",
-    ps1_t:"Payez le montant de votre plan", ps1_d:"Mensuel {m} ou annuel {y}, via Flouci ou CCP.",
+    ps1_t:"Payez le montant de votre plan", ps1_d:"Mensuel {m} ou annuel {y}, via Flouci, D17 ou CCP.",
     ps2_t:"Envoyez la preuve sur WhatsApp", ps2_d:"Capture Flouci ou photo du reçu, avec votre numéro inscrit.",
     ps3_t:"Recevez votre code", ps3_d:"Nous vérifions et vous envoyons votre code par WhatsApp, généralement en moins d'une heure.",
     ps4_t:"Activez-le ci-dessus", ps4_d:"Entrez le code dans le champ en haut de cette page. Vos annonces passent en ligne aussitôt.",
@@ -674,10 +677,12 @@ const I18N = {
     act_have_code:"عندي كود", act_have_code_sub:"أدخل كود التفعيل لنشر إعلاناتك فورًا.",
     activate_btn:"تفعيل", act_login_first:"سجّل الدخول أولًا لربط الكود بحسابك.", login_arrow:"تسجيل الدخول ←",
     plan_month:"شهري", plan_year:"سنوي", plan_save:"شهران مجّانًا", act_no_code:"ليس لديّ كود بعد",
-    tab_ccp:"🏤 البريد (CCP)", flouci_num:"رقم Flouci", official_account:"Khedmain — الحساب الرسمي",
+    tab_ccp:"🏤 البريد (CCP)", tab_d17:"💳 D17", flouci_num:"رقم Flouci", d17_num:"رقم D17",
+    d17_note:"💳 افتح تطبيق D17 (البريد) وأرسل المبلغ إلى هذا الرقم، ثم أرسل لقطة الشاشة عبر واتساب.",
+    official_account:"Khedmain — الحساب الرسمي",
     copy_num:"📋 نسخ الرقم", ccp_account:"حساب CCP",
     ccp_note:"🏤 أودِع نقدًا في أيّ مكتب بريد بهذا الرقم، أو حوّل عبر CCP. احتفظ بالوصل.",
-    ps1_t:"ادفع مبلغ خطتك", ps1_d:"شهري {m} أو سنوي {y}، عبر Flouci أو البريد.",
+    ps1_t:"ادفع مبلغ خطتك", ps1_d:"شهري {m} أو سنوي {y}، عبر Flouci أو D17 أو البريد.",
     ps2_t:"أرسل الإثبات عبر واتساب", ps2_d:"لقطة شاشة من Flouci أو صورة الوصل، مع رقمك المسجّل.",
     ps3_t:"استلم كودك", ps3_d:"نتحقّق ونرسل لك الكود عبر واتساب، عادةً في أقل من ساعة.",
     ps4_t:"فعّله في الأعلى", ps4_d:"أدخل الكود في الخانة أعلى هذه الصفحة. تصبح إعلاناتك ظاهرة فورًا.",
@@ -1402,12 +1407,19 @@ function viewActivate(){
         <h3 style="font-size:17px;margin-bottom:14px">${t('act_no_code')}</h3>
         <div class="pay-methods">
           <button class="pay-tab on" id="tabFlouci" onclick="payTab('flouci')">📱 Flouci</button>
+          <button class="pay-tab" id="tabD17" onclick="payTab('d17')">${t('tab_d17')}</button>
           <button class="pay-tab" id="tabCcp" onclick="payTab('ccp')">${t('tab_ccp')}</button>
         </div>
         <div class="pay-panel on" id="panelFlouci">
           <div class="acct-card"><div class="acct-label">${t('flouci_num')}</div><div class="acct-num">${CFG.FLOUCI}</div>
             <div class="acct-name">${t('official_account')}</div>
             <button class="copy-btn" onclick="copyVal('${CFG.FLOUCI.replace(/\s/g,'')}',this)">${t('copy_num')}</button></div>
+        </div>
+        <div class="pay-panel" id="panelD17">
+          <div class="acct-card"><div class="acct-label">${t('d17_num')}</div><div class="acct-num">${CFG.D17}</div>
+            <div class="acct-name">${t('official_account')}</div>
+            <button class="copy-btn" onclick="copyVal('${CFG.D17.replace(/\s/g,'')}',this)">${t('copy_num')}</button></div>
+          <div class="notice sun" style="margin-top:14px">${t('d17_note')}</div>
         </div>
         <div class="pay-panel" id="panelCcp">
           <div class="acct-card"><div class="acct-label">${t('ccp_account')}</div><div class="acct-num">${CFG.CCP}</div>
@@ -1426,8 +1438,13 @@ function viewActivate(){
     </div></div>`;
 }
 window.payTab = function(m){
-  $('#tabFlouci').classList.toggle('on', m==='flouci'); $('#tabCcp').classList.toggle('on', m==='ccp');
-  $('#panelFlouci').classList.toggle('on', m==='flouci'); $('#panelCcp').classList.toggle('on', m==='ccp');
+  const tabs = { flouci:['tabFlouci','panelFlouci'], d17:['tabD17','panelD17'], ccp:['tabCcp','panelCcp'] };
+  Object.keys(tabs).forEach(k => {
+    const [tabId, panelId] = tabs[k];
+    const tb = $('#'+tabId), pn = $('#'+panelId);
+    if(tb) tb.classList.toggle('on', k===m);
+    if(pn) pn.classList.toggle('on', k===m);
+  });
 };
 window.copyVal = function(val, btn){
   navigator.clipboard.writeText(val).then(()=>{
