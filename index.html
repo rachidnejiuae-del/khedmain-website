@@ -476,10 +476,10 @@ const API = (typeof window !== 'undefined' && window.KHEDMAIN_API) || 'https://k
 const CFG = {
   WHATSAPP: '21628357354',
   FLOUCI:   '+216 28 357 354',
-  D17:      '5359403644044861',   // ⇄ numéro/compte D17 à afficher (à remplacer)
+  D17:      '5359 4036 4404 4861',   // D17 (La Poste) card number
   CCP:      '13130593',
-  PRICE_MONTH: '5 DT',
-  PRICE_YEAR:  '50 DT',
+  PRICE_MONTH: '15 DT',
+  PRICE_YEAR:  '120 DT',
 };
 
 /* ---------- i18n (FR / AR) ----------------------------------------------- */
@@ -552,7 +552,7 @@ const I18N = {
     act_have_code:"J'ai déjà un code", act_have_code_sub:"Entrez votre code d'activation pour mettre vos annonces en ligne immédiatement.",
     activate_btn:"Activer", act_login_first:"Connectez-vous d'abord pour lier le code à votre compte.", login_arrow:"Se connecter →",
     plan_month:"Mensuel", plan_year:"Annuel", plan_save:"2 mois offerts", act_no_code:"Je n'ai pas encore de code",
-    tab_ccp:"🏤 CCP / La Poste", tab_d17:"💳 D17", flouci_num:"Numéro Flouci", d17_num:"Numéro D17",
+    tab_ccp:"🏤 CCP / La Poste", tab_d17:"💳 D17", flouci_num:"Numéro Flouci", d17_num:"Numéro de carte D17",
     d17_note:"💳 Ouvrez l'application D17 (La Poste) et envoyez le montant vers ce numéro, puis envoyez la capture sur WhatsApp.",
     official_account:"Khedmain — Compte officiel",
     copy_num:"📋 Copier le numéro", ccp_account:"Compte CCP",
@@ -677,7 +677,7 @@ const I18N = {
     act_have_code:"عندي كود", act_have_code_sub:"أدخل كود التفعيل لنشر إعلاناتك فورًا.",
     activate_btn:"تفعيل", act_login_first:"سجّل الدخول أولًا لربط الكود بحسابك.", login_arrow:"تسجيل الدخول ←",
     plan_month:"شهري", plan_year:"سنوي", plan_save:"شهران مجّانًا", act_no_code:"ليس لديّ كود بعد",
-    tab_ccp:"🏤 البريد (CCP)", tab_d17:"💳 D17", flouci_num:"رقم Flouci", d17_num:"رقم D17",
+    tab_ccp:"🏤 البريد (CCP)", tab_d17:"💳 D17", flouci_num:"رقم Flouci", d17_num:"رقم بطاقة D17",
     d17_note:"💳 افتح تطبيق D17 (البريد) وأرسل المبلغ إلى هذا الرقم، ثم أرسل لقطة الشاشة عبر واتساب.",
     official_account:"Khedmain — الحساب الرسمي",
     copy_num:"📋 نسخ الرقم", ccp_account:"حساب CCP",
@@ -1259,6 +1259,8 @@ function viewListing({seg}){
           </aside>
         </div>
       </div></div>`;
+    // Count this view (skip the admin's own previews)
+    if(!(ME && ME.isAdmin)){ apiFetch('/listings/'+id+'/view', { method:'POST' }).catch(()=>{}); }
   }).catch((e) => {
     if(e.status===404){
       app.innerHTML = `<div class="page"><div class="wrap">${emptyBlock(t('detail_notfound'))}<div style="margin-top:16px"><a href="#/browse" class="btn btn-primary">${t('back_to_listings')}</a></div></div></div>`;
