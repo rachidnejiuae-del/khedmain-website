@@ -572,6 +572,7 @@ const I18N = {
     hello:"Bonjour,", dash_sub:"Gérez vos annonces et votre abonnement.", admin_btn:"🛠️ Administration", new_ad:"+ Nouvelle annonce",
     sub_label:"Abonnement", active:"Actif", inactive:"Inactif", until:"Jusqu'au", online:"En ligne",
     not_visible:"Vos annonces ne sont pas visibles.", activate_now:"Activer maintenant", extend:"Prolonger",
+    free_week_note:"🎁 Votre première semaine est <strong>offerte</strong>. À la fin de la semaine gratuite, contactez l'administrateur pour obtenir un code et renouveler votre abonnement.", free_week_wa:"💬 Contacter l'administrateur", wa_admin_msg:"Bonjour Khedmain, je souhaite renouveler mon abonnement après ma semaine gratuite. Mon numéro inscrit : ",
     my_ads:"Mes annonces", online_visible:"En ligne et visibles", pending_activation:"En attente d'activation",
     badge_online:"● En ligne", badge_pending:"⏳ En attente", view:"Voir",
     dash_empty:"Vous n'avez pas encore d'annonce. Publiez-en une pour commencer.", dash_load_err:"Impossible de charger votre espace.",
@@ -697,6 +698,7 @@ const I18N = {
     hello:"مرحبًا،", dash_sub:"أدِر إعلاناتك واشتراكك.", admin_btn:"🛠️ الإدارة", new_ad:"+ إعلان جديد",
     sub_label:"الاشتراك", active:"مفعّل", inactive:"غير مفعّل", until:"حتى", online:"منشور",
     not_visible:"إعلاناتك غير ظاهرة.", activate_now:"فعّل الآن", extend:"تمديد",
+    free_week_note:"🎁 أسبوعك الأول <strong>مجّاني</strong>. بعد انتهاء الأسبوع المجّاني، تواصل مع الإدارة للحصول على كود وتجديد اشتراكك.", free_week_wa:"💬 تواصل مع الإدارة", wa_admin_msg:"مرحبًا خدمة إن، أريد تجديد اشتراكي بعد الأسبوع المجّاني. رقمي المسجّل: ",
     my_ads:"إعلاناتي", online_visible:"منشورة وظاهرة", pending_activation:"في انتظار التفعيل",
     badge_online:"● منشور", badge_pending:"⏳ في الانتظار", view:"عرض",
     dash_empty:"ليس لديك إعلان بعد. انشر واحدًا للبدء.", dash_load_err:"تعذّر تحميل مساحتك.",
@@ -1549,6 +1551,10 @@ function viewDashboard(){
             <div class="lab">${t('my_ads')}</div><div class="val">${mine.length}</div>
             <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${active?t('online_visible'):t('pending_activation')}</div>
           </div>
+        </div>
+        <div class="notice sun" style="margin-bottom:18px;flex-direction:column;align-items:stretch;gap:10px">
+          <div>${t('free_week_note')}</div>
+          <a class="btn btn-wa btn-sm" target="_blank" rel="noopener" style="align-self:flex-start" href="${waLink(t('wa_admin_msg')+(u.phone||''))}">${t('free_week_wa')}</a>
         </div>
         <h2 style="font-size:19px;margin-bottom:14px">${t('my_ads')}</h2>
         <div style="display:flex;flex-direction:column;gap:12px">
