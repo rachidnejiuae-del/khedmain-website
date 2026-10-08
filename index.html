@@ -8,6 +8,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<!-- PWA (installable app) -->
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="theme-color" content="#F6F4EF" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Khedmain" />
+<link rel="apple-touch-icon" href="/icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
+</script>
 <style>
   /* ============================================================
      Khedmain — design tokens
@@ -572,7 +588,7 @@ const I18N = {
     hello:"Bonjour,", dash_sub:"Gérez vos annonces et votre abonnement.", admin_btn:"🛠️ Administration", new_ad:"+ Nouvelle annonce",
     sub_label:"Abonnement", active:"Actif", inactive:"Inactif", until:"Jusqu'au", online:"En ligne",
     not_visible:"Vos annonces ne sont pas visibles.", activate_now:"Activer maintenant", extend:"Prolonger",
-    free_week_note:"🎁 Votre première semaine est <strong>offerte</strong>. À la fin de la semaine gratuite, contactez l'administrateur pour obtenir un code et renouveler votre abonnement.", free_week_wa:"💬 Contacter l'administrateur", wa_admin_msg:"Bonjour Khedmain, je souhaite renouveler mon abonnement après ma semaine gratuite. Mon numéro inscrit : ",
+    free_week_note:"🎁 Votre première semaine est <strong>offerte</strong>. Contactez l'administrateur pour l'activer et rendre vos annonces visibles.", trial_active_note:"🎁 Vous êtes dans votre <strong>semaine gratuite</strong>, active jusqu'au {date}. Avant la fin, contactez l'administrateur pour obtenir un code et continuer.", trial_expired_note:"⌛ Votre semaine gratuite est <strong>terminée</strong>. Contactez l'administrateur pour obtenir un code et réactiver vos annonces.", free_week_wa:"💬 Contacter l'administrateur", wa_admin_msg:"Bonjour Khedmain, je souhaite activer / renouveler mon abonnement. Mon numéro inscrit : ",
     my_ads:"Mes annonces", online_visible:"En ligne et visibles", pending_activation:"En attente d'activation",
     badge_online:"● En ligne", badge_pending:"⏳ En attente", view:"Voir",
     dash_empty:"Vous n'avez pas encore d'annonce. Publiez-en une pour commencer.", dash_load_err:"Impossible de charger votre espace.",
@@ -698,7 +714,7 @@ const I18N = {
     hello:"مرحبًا،", dash_sub:"أدِر إعلاناتك واشتراكك.", admin_btn:"🛠️ الإدارة", new_ad:"+ إعلان جديد",
     sub_label:"الاشتراك", active:"مفعّل", inactive:"غير مفعّل", until:"حتى", online:"منشور",
     not_visible:"إعلاناتك غير ظاهرة.", activate_now:"فعّل الآن", extend:"تمديد",
-    free_week_note:"🎁 أسبوعك الأول <strong>مجّاني</strong>. بعد انتهاء الأسبوع المجّاني، تواصل مع الإدارة للحصول على كود وتجديد اشتراكك.", free_week_wa:"💬 تواصل مع الإدارة", wa_admin_msg:"مرحبًا خدمة إن، أريد تجديد اشتراكي بعد الأسبوع المجّاني. رقمي المسجّل: ",
+    free_week_note:"🎁 أسبوعك الأول <strong>مجّاني</strong>. تواصل مع الإدارة لتفعيله وجعل إعلاناتك ظاهرة.", trial_active_note:"🎁 أنت في <strong>أسبوعك المجّاني</strong>، فعّال حتى {date}. قبل انتهائه، تواصل مع الإدارة للحصول على كود والمتابعة.", trial_expired_note:"⌛ انتهى <strong>أسبوعك المجّاني</strong>. تواصل مع الإدارة للحصول على كود وإعادة تفعيل إعلاناتك.", free_week_wa:"💬 تواصل مع الإدارة", wa_admin_msg:"مرحبًا خدمة إن، أريد تفعيل / تجديد اشتراكي. رقمي المسجّل: ",
     my_ads:"إعلاناتي", online_visible:"منشورة وظاهرة", pending_activation:"في انتظار التفعيل",
     badge_online:"● منشور", badge_pending:"⏳ في الانتظار", view:"عرض",
     dash_empty:"ليس لديك إعلان بعد. انشر واحدًا للبدء.", dash_load_err:"تعذّر تحميل مساحتك.",
@@ -1530,6 +1546,16 @@ function viewDashboard(){
     const mine = d.listings || []; const active = d.subActive;
     // keep cached sub status roughly in sync
     if(active && (!ME.subUntil || ME.subUntil < now())){ /* server says active */ }
+    // free-trial banner — only shown when relevant to this provider's state
+    const subState = d.subState || (active ? 'paid' : 'none');
+    const subEnd = d.subUntil || u.subUntil || 0;
+    const waBtn = `<a class="btn btn-wa btn-sm" target="_blank" rel="noopener" style="align-self:flex-start" href="${waLink(t('wa_admin_msg')+(u.phone||''))}">${t('free_week_wa')}</a>`;
+    const banner = (cls, html) => `<div class="notice ${cls}" style="margin-bottom:18px;flex-direction:column;align-items:stretch;gap:10px"><div>${html}</div>${waBtn}</div>`;
+    let trialBanner = '';
+    if(subState==='trial')              trialBanner = banner('ok',  t('trial_active_note').replace('{date}', fmtDate(subEnd)));
+    else if(subState==='trial_expired') trialBanner = banner('sun', t('trial_expired_note'));
+    else if(subState==='none')          trialBanner = banner('sun', t('free_week_note'));
+    // (paid → no banner)
     app.innerHTML = `
       <div class="page"><div class="wrap">
         <div class="page-head" style="display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap">
@@ -1552,10 +1578,7 @@ function viewDashboard(){
             <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${active?t('online_visible'):t('pending_activation')}</div>
           </div>
         </div>
-        <div class="notice sun" style="margin-bottom:18px;flex-direction:column;align-items:stretch;gap:10px">
-          <div>${t('free_week_note')}</div>
-          <a class="btn btn-wa btn-sm" target="_blank" rel="noopener" style="align-self:flex-start" href="${waLink(t('wa_admin_msg')+(u.phone||''))}">${t('free_week_wa')}</a>
-        </div>
+        ${trialBanner}
         <h2 style="font-size:19px;margin-bottom:14px">${t('my_ads')}</h2>
         <div style="display:flex;flex-direction:column;gap:12px">
           ${mine.length ? mine.map(l=>`
