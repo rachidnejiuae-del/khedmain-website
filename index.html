@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"> 
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -410,7 +410,6 @@
   [dir="rtl"] .acct-num{direction:ltr;}
   @media(max-width:720px){ [dir="rtl"] .console .fld+.fld{border-right:none;} }
 </style>
- <script src="/pwa-install.js" defer></script> 
 </head>
 <body>
 
@@ -759,7 +758,7 @@ function t(k){ const v = I18N[LANG] && I18N[LANG][k]; return v!=null ? v : (I18N
 
 /* Arabic names for governorates + categories (values/ids stay canonical FR) */
 const GOV_AR = {'Tunis':'تونس','Ariana':'أريانة','Ben Arous':'بن عروس','Manouba':'منوبة','Nabeul':'نابل','Zaghouan':'زغوان','Bizerte':'بنزرت','Béja':'باجة','Jendouba':'جندوبة','Le Kef':'الكاف','Siliana':'سليانة','Sousse':'سوسة','Monastir':'المنستير','Mahdia':'المهدية','Kairouan':'القيروان','Kasserine':'القصرين','Sidi Bouzid':'سيدي بوزيد','Sfax':'صفاقس','Gabès':'قابس','Médenine':'مدنين','Tataouine':'تطاوين','Gafsa':'قفصة','Tozeur':'توزر','Kébili':'قبلي'};
-const CAT_AR = {plomberie:'السباكة',electricite:'الكهرباء',peinture:'الدهن والديكور',menuiserie:'النجارة',maconnerie:'البناء والمقاولات',clim:'التكييف والتبريد',carrelage:'البلاط والرخام',platrerie:'الجبس والأسقف المستعارة',soudure:'اللحام والحدادة',jardinage:'البستنة والمساحات الخضراء',nettoyage:'التنظيف',mecanique:'ميكانيك السيارات',tolerie:'الحدادة ودهن السيارات',coiffure:'الحلاقة والتجميل',couture:'الخياطة والتفصيل',cours:'دروس خصوصية',informatique:'الإعلامية والإصلاح',photo:'التصوير والفيديو',traiteur:'المطبخ والحفلات',aide:'المساعدة المنزلية والرعاية',gardiennage:'الأمن والحراسة',autres:'خدمات أخرى',pickup:'بيك أب وعربات نفعية',camion:'شاحنات ووزن ثقيل',excavatrice:'حفّارة',chargeuse:'جرّافة / تراكتوبال',grue:'رافعة ورفع',tracteur:'جرّار فلاحي',betonniere:'خلّاطة الخرسانة',citerne:'شاحنة صهريج (ماء)',bus:'حافلة ونقل',materiel:'كراء معدّات البناء'};
+const CAT_AR = {plomberie:'السباكة',electricite:'الكهرباء',peinture:'الدهن والديكور',menuiserie:'النجارة',maconnerie:'البناء والمقاولات',clim:'التكييف والتبريد',carrelage:'البلاط والرخام',platrerie:'الجبس والأسقف المستعارة',soudure:'اللحام والحدادة',jardinage:'البستنة والمساحات الخضراء',nettoyage:'التنظيف',mecanique:'ميكانيك السيارات',tolerie:'الحدادة ودهن السيارات',coiffure:'الحلاقة والتجميل',couture:'الخياطة والتفصيل',cours:'دروس خصوصية',informatique:'الإعلامية والإصلاح',photo:'التصوير والفيديو',traiteur:'المطبخ والحفلات',aide:'المساعدة المنزلية والرعاية',gardiennage:'الأمن والحراسة',avocat:'محاماة',notaire:'عدل إشهاد',huissier:'عدل منفّذ',traducteur:'ترجمة',ecrivain_public:'كاتب عمومي',livraison:'توصيل الطلبات',architecte:'مهندس معماري',ing_agricole:'مهندس فلاحي',infirmier:'ممرّض',veterinaire:'طبيب بيطري',topographe:'قيس الأراضي',location_fetes:'كراء لوازم الأفراح',evenementiel:'تجهيز المناسبات',location_immo:'كراء عقار',cloture:'تسييج الأراضي',lavage_auto:'غسيل السيارات',autres:'خدمات أخرى',tuktuk:'تكتك للنقل',pickup:'بيك أب وعربات نفعية',camion:'شاحنات ووزن ثقيل',excavatrice:'حفّارة',chargeuse:'جرّافة / تراكتوبال',grue:'رافعة ورفع',tracteur:'جرّار فلاحي',betonniere:'خلّاطة الخرسانة',citerne:'شاحنة صهريج (ماء)',bus:'حافلة ونقل',materiel:'كراء معدّات البناء'};
 const UNIT_AR = {heure:'/ ساعة',jour:'/ يوم',service:'/ خدمة',projet:'/ مشروع',mois:'/ شهر',km:'/ كم'};
 function govDisplay(g){ return LANG==='ar' ? (GOV_AR[g]||g) : g; }
 function catName(id){ const c=CAT_BY_ID[id]; if(!c) return ''; return LANG==='ar' ? (CAT_AR[id]||c.name) : c.name; }
@@ -810,9 +809,26 @@ const CATEGORIES = [
     { id:'traiteur',     name:'Traiteur & Événementiel',icon:'🍽️' },
     { id:'aide',         name:'Aide à domicile & Garde',icon:'👨‍👩‍👧' },
     { id:'gardiennage',  name:'Sécurité & Gardiennage', icon:'🛡️' },
+    { id:'avocat',       name:'Avocat',                 icon:'⚖️' },
+    { id:'notaire',      name:'Notaire (Adoul)',        icon:'📜' },
+    { id:'huissier',     name:'Huissier de justice',    icon:'📋' },
+    { id:'traducteur',   name:'Traduction',             icon:'🌐' },
+    { id:'ecrivain_public',name:'Écrivain public',      icon:'✍️' },
+    { id:'livraison',    name:'Livraison',              icon:'📦' },
+    { id:'architecte',   name:'Architecte',             icon:'📐' },
+    { id:'ing_agricole', name:'Ingénieur agricole',     icon:'🌾' },
+    { id:'infirmier',    name:'Infirmier à domicile',   icon:'💉' },
+    { id:'veterinaire',  name:'Vétérinaire',            icon:'🐾' },
+    { id:'topographe',   name:'Géomètre-topographe',    icon:'🗺️' },
+    { id:'location_fetes',name:'Location matériel de fête',icon:'🎉' },
+    { id:'evenementiel', name:'Organisation d\'événements',icon:'🎪' },
+    { id:'location_immo',name:'Location immobilière',   icon:'🏠' },
+    { id:'cloture',      name:'Clôture de terrains',    icon:'🚧' },
+    { id:'lavage_auto',  name:'Lavage auto',            icon:'🚿' },
     { id:'autres',       name:'Autres services',        icon:'✨' },
   ]},
   { group:'Véhicules & Engins', items:[
+    { id:'tuktuk',       name:'Tuk-tuk / Triporteur',   icon:'🛺' },
     { id:'pickup',       name:'Pick-up & Utilitaires',  icon:'🛻' },
     { id:'camion',       name:'Camions & Poids lourds', icon:'🚚' },
     { id:'excavatrice',  name:'Pelle / Excavatrice',    icon:'🚜' },
