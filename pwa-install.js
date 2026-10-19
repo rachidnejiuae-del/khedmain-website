@@ -1,4 +1,4 @@
-/* Khedmain — install banner (bilingual FR / AR) */
+/* Khedma-In — install banner (bilingual FR / AR) */
 (function () {
   'use strict';
   var standalone = window.matchMedia('(display-mode: standalone)').matches ||
@@ -14,7 +14,7 @@
   try { lang = localStorage.getItem('kd_lang') || 'ar'; } catch (e) {}
   var ar = lang === 'ar';
   var T = {
-    text:    ar ? 'ثبّت تطبيق خدمة إن على هاتفك' : 'Installez l’application Khedmain',
+    text:    ar ? 'ثبّت تطبيق خدمة إن على هاتفك' : 'Installez l’application Khedma-In',
     install: ar ? 'تثبيت' : 'Installer',
     how:     ar ? 'كيفاش؟' : 'Voir comment',
     close:   ar ? 'إغلاق' : 'Fermer'
@@ -39,7 +39,7 @@
   bar.className = 'kdib';
   bar.setAttribute('dir', ar ? 'rtl' : 'ltr');
   bar.innerHTML =
-    '<img src="/icon-192.png" alt="Khedmain" />' +
+    '<img src="/icon-192.png" alt="Khedma-In" />' +
     '<span class="kdib-t">' + T.text + '</span>' +
     '<a class="kdib-go" id="kdibGo" href="/installer.html">' + T.how + '</a>' +
     '<button class="kdib-x" id="kdibX" aria-label="' + T.close + '">&times;</button>';

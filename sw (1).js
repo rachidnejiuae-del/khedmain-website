@@ -1,5 +1,5 @@
 /* ============================================================================
-   Khedmain — service worker (PWA)
+   Khedma-In — service worker (PWA)
    Strategy:
    - App shell (index + icons + manifest): cached on install.
    - Navigations: network-first, fall back to the cached shell when offline.

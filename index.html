@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Khedmain — محترف أو معدّة، في كل تونس</title>
-<meta name="description" content="Khedmain : la place de marché des métiers, services et engins en Tunisie. Plombiers, électriciens, peintres, mécaniciens, camions, pelles, tracteurs… Publiez votre annonce ou trouvez un pro près de chez vous." />
+<title>Khedma-In — محترف أو معدّة، في كل تونس</title>
+<meta name="description" content="Khedma-In : la place de marché des métiers, services et engins en Tunisie. Plombiers, électriciens, peintres, mécaniciens, camions, pelles, tracteurs… Publiez votre annonce ou trouvez un pro près de chez vous." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -14,7 +14,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="Khedmain" />
+<meta name="apple-mobile-web-app-title" content="Khedma-In" />
 <link rel="apple-touch-icon" href="/icon-192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
 <script>
@@ -26,7 +26,7 @@
 </script>
 <style>
   /* ============================================================
-     Khedmain — design tokens
+     Khedma-In — design tokens
      Palette: cobalt blue (trust / marketplace) + hi-vis orange
      (worksite energy). Deliberately distinct from Mou3allim.
      ============================================================ */
@@ -416,8 +416,8 @@
 <!-- Navigation -->
 <header class="nav">
   <div class="wrap nav-in">
-    <a href="#/" class="brand" aria-label="Khedmain accueil">
-      <span class="brand-mark">K</span><span>Khedma<span class="b2">in</span></span>
+    <a href="#/" class="brand" aria-label="Khedma-In accueil">
+      <span class="brand-mark">K</span><span>Khedma-<span class="b2">In</span></span>
     </a>
     <nav class="nav-links">
       <a href="#/browse" data-i18n="nav_browse">Parcourir</a>
@@ -440,7 +440,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="brand"><span class="brand-mark">K</span><span>Khedma<span class="b2">in</span></span></div>
+        <div class="brand"><span class="brand-mark">K</span><span>Khedma-<span class="b2">In</span></span></div>
         <p style="margin:0;max-width:320px;font-size:14px;" data-i18n="footer_tagline">La place de marché des métiers, services et engins en Tunisie. Trouvez un pro près de chez vous, ou publiez votre annonce en quelques minutes.</p>
       </div>
       <div>
@@ -458,8 +458,8 @@
       </div>
     </div>
     <div class="foot-bot">
-      <span>© <span id="yr"></span> Khedmain · <span data-i18n="footer_made">Fait en Tunisie 🇹🇳</span></span>
-      <span data-i18n="footer_disclaimer">Khedmain met en relation — vérifiez toujours l'identité avant tout engagement.</span>
+      <span>© <span id="yr"></span> Khedma-In · <span data-i18n="footer_made">Fait en Tunisie 🇹🇳</span></span>
+      <span data-i18n="footer_disclaimer">Khedma-In met en relation — vérifiez toujours l'identité avant tout engagement.</span>
     </div>
   </div>
 </footer>
@@ -481,7 +481,7 @@
 
 <script>
 /* ============================================================================
-   Khedmain — frontend app (talks to the live API)
+   Khedma-In — frontend app (talks to the live API)
    ----------------------------------------------------------------------------
    Data now lives in PostgreSQL (Neon) via the Node/Express API on Render.
    The browser only holds the login token + a cached copy of the current user.
@@ -502,8 +502,8 @@ const CFG = {
 let LANG = localStorage.getItem('kd_lang') || 'ar';
 const I18N = {
   fr: {
-    meta_title:"Khedmain — Trouvez un pro ou un engin, partout en Tunisie",
-    meta_desc:"Khedmain : la place de marché des métiers, services et engins en Tunisie. Publiez votre annonce ou trouvez un pro près de chez vous.",
+    meta_title:"Khedma-In — Trouvez un pro ou un engin, partout en Tunisie",
+    meta_desc:"Khedma-In : la place de marché des métiers, services et engins en Tunisie. Publiez votre annonce ou trouvez un pro près de chez vous.",
     nav_browse:"Parcourir", nav_vehicles:"Véhicules & engins", nav_how:"Comment ça marche",
     nav_myspace:"Mon espace", nav_logout:"Déconnexion", nav_publish:"+ Publier", nav_login:"Connexion",
     sheet_admin:"🛠️ Administration", sheet_publish_full:"+ Publier une annonce", sheet_login_full:"Connexion / Inscription",
@@ -511,8 +511,8 @@ const I18N = {
     footer_explore:"Explorer", footer_all:"Toutes les annonces", footer_post:"Publier une annonce",
     footer_contact:"Contact & aide", footer_wa:"💬 Support WhatsApp", footer_activate:"Activer mon abonnement",
     footer_conditions:"Conditions & sécurité", footer_made:"Fait en Tunisie 🇹🇳",
-    footer_disclaimer:"Khedmain met en relation — vérifiez toujours l'identité avant tout engagement.",
-    wa_help:"Bonjour Khedmain, j'ai besoin d'aide.",
+    footer_disclaimer:"Khedma-In met en relation — vérifiez toujours l'identité avant tout engagement.",
+    wa_help:"Bonjour Khedma-In, j'ai besoin d'aide.",
     loading:"Chargement…", retry:"Réessayer",
     server_waking:"⏳ Le serveur se réveille, un instant…",
     err_network:"Connexion au serveur impossible. Vérifiez votre réseau.", err_prefix:"Erreur ",
@@ -543,7 +543,7 @@ const I18N = {
     detail_description:"Description", detail_nodesc:"Aucune description.",
     verified_pill:"✅ Prestataire vérifié", provider_default:"Prestataire",
     call_btn:"📞 Appeler", wa_btn:"💬 Contacter sur WhatsApp",
-    wa_listing_msg:"Bonjour, je vous contacte via Khedmain au sujet de : ",
+    wa_listing_msg:"Bonjour, je vous contacte via Khedma-In au sujet de : ",
     detail_safety:"🔒 Pour votre sécurité : rencontrez-vous dans un lieu sûr, vérifiez le travail avant de payer, et ne versez jamais d'acompte important à l'avance.",
     detail_notfound:"Annonce introuvable.", back_to_listings:"Retour aux annonces", detail_load_err:"Impossible de charger cette annonce.",
     post_login_note:"Connectez-vous pour publier une annonce. C'est gratuit et rapide.",
@@ -570,17 +570,17 @@ const I18N = {
     plan_month:"Mensuel", plan_year:"Annuel", plan_save:"2 mois offerts", act_no_code:"Je n'ai pas encore de code",
     tab_ccp:"🏤 CCP / La Poste", tab_d17:"💳 D17", flouci_num:"Numéro Flouci", d17_num:"Numéro de carte D17",
     d17_note:"💳 Ouvrez l'application D17 (La Poste) et envoyez le montant vers ce numéro, puis envoyez la capture sur WhatsApp.",
-    official_account:"Khedmain — Compte officiel",
+    official_account:"Khedma-In — Compte officiel",
     copy_num:"📋 Copier le numéro", ccp_account:"Compte CCP",
     ccp_note:"🏤 Déposez des espèces dans n'importe quel bureau de poste avec ce numéro, ou faites un virement CCP. Gardez le reçu.",
     ps1_t:"Payez le montant de votre plan", ps1_d:"Mensuel {m} ou annuel {y}, via Flouci, D17 ou CCP.",
     ps2_t:"Envoyez la preuve sur WhatsApp", ps2_d:"Capture Flouci ou photo du reçu, avec votre numéro inscrit.",
     ps3_t:"Recevez votre code", ps3_d:"Nous vérifions et vous envoyons votre code par WhatsApp, généralement en moins d'une heure.",
     ps4_t:"Activez-le ci-dessus", ps4_d:"Entrez le code dans le champ en haut de cette page. Vos annonces passent en ligne aussitôt.",
-    send_proof:"💬 Envoyer la preuve", wa_proof_msg:"Bonjour Khedmain, voici ma preuve de paiement pour activer mon abonnement. Mon numéro inscrit : ",
+    send_proof:"💬 Envoyer la preuve", wa_proof_msg:"Bonjour Khedma-In, voici ma preuve de paiement pour activer mon abonnement. Mon numéro inscrit : ",
     copied:"✓ Copié", enter_code:"Entrez votre code.", activating:"Activation…", sub_activated_prefix:"Abonnement", sub_activated_suffix:"activé ✅",
     login_title:"Connexion", register_title:"Créer un compte", login_sub:"Accédez à votre espace prestataire.",
-    register_sub:"Rejoignez Khedmain en une minute.", f_fullname:"Nom complet", ph_fullname:"Prénom Nom",
+    register_sub:"Rejoignez Khedma-In en une minute.", f_fullname:"Nom complet", ph_fullname:"Prénom Nom",
     f_phone2:"Téléphone", f_password:"Mot de passe", login_btn:"Se connecter", register_btn:"Créer mon compte",
     no_account:"Pas encore de compte ?", register_link:"S'inscrire", have_account:"Déjà inscrit ?", login_link:"Se connecter",
     phone_invalid2:"Numéro invalide (format +216 XX XXX XXX).", pass_short:"Mot de passe trop court.", one_moment:"Un instant…",
@@ -588,13 +588,13 @@ const I18N = {
     hello:"Bonjour,", dash_sub:"Gérez vos annonces et votre abonnement.", admin_btn:"🛠️ Administration", new_ad:"+ Nouvelle annonce",
     sub_label:"Abonnement", active:"Actif", inactive:"Inactif", until:"Jusqu'au", online:"En ligne",
     not_visible:"Vos annonces ne sont pas visibles.", activate_now:"Activer maintenant", extend:"Prolonger",
-    free_week_note:"🎁 Votre première semaine est <strong>offerte</strong>. Contactez l'administrateur pour l'activer et rendre vos annonces visibles.", trial_active_note:"🎁 Vous êtes dans votre <strong>semaine gratuite</strong>, active jusqu'au {date}. Avant la fin, contactez l'administrateur pour obtenir un code et continuer.", trial_expired_note:"⌛ Votre semaine gratuite est <strong>terminée</strong>. Contactez l'administrateur pour obtenir un code et réactiver vos annonces.", free_week_wa:"💬 Contacter l'administrateur", wa_admin_msg:"Bonjour Khedmain, je souhaite activer / renouveler mon abonnement. Mon numéro inscrit : ",
+    free_week_note:"🎁 Votre première semaine est <strong>offerte</strong>. Contactez l'administrateur pour l'activer et rendre vos annonces visibles.", trial_active_note:"🎁 Vous êtes dans votre <strong>semaine gratuite</strong>, active jusqu'au {date}. Avant la fin, contactez l'administrateur pour obtenir un code et continuer.", trial_expired_note:"⌛ Votre semaine gratuite est <strong>terminée</strong>. Contactez l'administrateur pour obtenir un code et réactiver vos annonces.", free_week_wa:"💬 Contacter l'administrateur", wa_admin_msg:"Bonjour Khedma-In, je souhaite activer / renouveler mon abonnement. Mon numéro inscrit : ",
     my_ads:"Mes annonces", online_visible:"En ligne et visibles", pending_activation:"En attente d'activation",
     badge_online:"● En ligne", badge_pending:"⏳ En attente", view:"Voir",
     dash_empty:"Vous n'avez pas encore d'annonce. Publiez-en une pour commencer.", dash_load_err:"Impossible de charger votre espace.",
     confirm_delete:"Supprimer cette annonce ?", ad_deleted:"Annonce supprimée.",
     admin_denied:"Accès réservé à l'administrateur.", admin_load:"Chargement de l'administration…",
-    admin_title:"Administration Khedmain", admin_sub:"Prestataires, annonces et codes prépayés.",
+    admin_title:"Administration Khedma-In", admin_sub:"Prestataires, annonces et codes prépayés.",
     stat_providers:"Prestataires", stat_listings:"Annonces", stat_free_codes:"Codes libres", stat_used_codes:"Codes utilisés",
     tab_providers:"👤 Prestataires", tab_listings:"📋 Annonces", tab_codes:"🎟️ Codes",
     no_providers:"Aucun prestataire.", load_err:"Erreur de chargement.",
@@ -606,7 +606,7 @@ const I18N = {
     gen_codes:"Générer des codes", f_plan:"Plan", f_qty:"Quantité", generate:"Générer",
     free_codes:"Codes libres", plan_word:"Plan", no_free_codes:"Aucun code libre. Générez-en.", copy:"📋 Copier",
     generating:"Génération…", codes_generated:"code(s) généré(s).",
-    help_title:"Comment ça marche", help_sub:"Khedmain met en relation les Tunisiens avec des pros et des engins, sans intermédiaire.",
+    help_title:"Comment ça marche", help_sub:"Khedma-In met en relation les Tunisiens avec des pros et des engins, sans intermédiaire.",
     help_s1_t:"Cherchez", help_s1_d:"Filtrez par catégorie, gouvernorat et mot-clé pour trouver un pro ou un engin près de vous.",
     help_s2_t:"Comparez", help_s2_d:"Consultez les photos, les tarifs et les descriptions. Choisissez en toute confiance.",
     help_s3_t:"Contactez", help_s3_d:"Appelez ou écrivez sur WhatsApp directement. Aucune commission, aucun frais côté client.",
@@ -614,9 +614,9 @@ const I18N = {
     help_prov_body:`Créez votre compte, publiez votre annonce avec photos et tarifs, puis activez votre visibilité par <strong>code prépayé</strong> (Flouci ou CCP). Une fois activée, votre annonce apparaît dans les recherches partout en Tunisie. Vous gardez 100% de vos revenus.`,
     help_cta_publish:"Publier une annonce", help_cta_activate:"Activer par code",
     cond_title:"Conditions & sécurité", cond_updated:"Dernière mise à jour :",
-    cond_body:`<strong>1. Rôle de Khedmain.</strong> Khedmain est une plateforme de mise en relation. Nous ne sommes ni partie aux prestations, ni employeur des prestataires. Les accords, prix et travaux se concluent directement entre le client et le prestataire.
+    cond_body:`<strong>1. Rôle de Khedma-In.</strong> Khedma-In est une plateforme de mise en relation. Nous ne sommes ni partie aux prestations, ni employeur des prestataires. Les accords, prix et travaux se concluent directement entre le client et le prestataire.
 
-<strong>2. Responsabilité.</strong> Khedmain ne garantit pas la qualité, la légalité ou la sécurité des services proposés. Vérifiez toujours l'identité et les qualifications avant tout engagement.
+<strong>2. Responsabilité.</strong> Khedma-In ne garantit pas la qualité, la légalité ou la sécurité des services proposés. Vérifiez toujours l'identité et les qualifications avant tout engagement.
 
 <strong>3. Sécurité.</strong> Rencontrez-vous dans un lieu sûr, ne versez pas d'acompte important à l'avance, et exigez un reçu. Signalez tout abus via WhatsApp.
 
@@ -628,8 +628,8 @@ const I18N = {
     cond_disclaimer:"Ce texte est un modèle de départ à faire relire selon la réglementation tunisienne avant le lancement public.",
   },
   ar: {
-    meta_title:"Khedmain — محترف أو معدّة، في كل تونس",
-    meta_desc:"Khedmain: منصّة المهن والخدمات والمعدّات في تونس. انشر إعلانك أو جد محترفًا قريبًا منك.",
+    meta_title:"Khedma-In — محترف أو معدّة، في كل تونس",
+    meta_desc:"Khedma-In: منصّة المهن والخدمات والمعدّات في تونس. انشر إعلانك أو جد محترفًا قريبًا منك.",
     nav_browse:"تصفّح", nav_vehicles:"مركبات ومعدّات", nav_how:"كيف يعمل",
     nav_myspace:"مساحتي", nav_logout:"خروج", nav_publish:"+ أضف إعلان", nav_login:"دخول",
     sheet_admin:"🛠️ الإدارة", sheet_publish_full:"+ أضف إعلان", sheet_login_full:"دخول / تسجيل",
@@ -637,8 +637,8 @@ const I18N = {
     footer_explore:"استكشف", footer_all:"كل الإعلانات", footer_post:"أضف إعلان",
     footer_contact:"اتصال ومساعدة", footer_wa:"💬 دعم واتساب", footer_activate:"تفعيل اشتراكي",
     footer_conditions:"الشروط والأمان", footer_made:"صُنع في تونس 🇹🇳",
-    footer_disclaimer:"Khedmain وسيط للتعارف — تحقّق دائمًا من الهوية قبل أيّ التزام.",
-    wa_help:"مرحبًا Khedmain، أحتاج إلى مساعدة.",
+    footer_disclaimer:"Khedma-In وسيط للتعارف — تحقّق دائمًا من الهوية قبل أيّ التزام.",
+    wa_help:"مرحبًا Khedma-In، أحتاج إلى مساعدة.",
     loading:"جارٍ التحميل…", retry:"إعادة المحاولة",
     server_waking:"⏳ الخادم يستيقظ، لحظة…",
     err_network:"تعذّر الاتصال بالخادم. تحقّق من اتصالك بالإنترنت.", err_prefix:"خطأ ",
@@ -669,7 +669,7 @@ const I18N = {
     detail_description:"الوصف", detail_nodesc:"لا يوجد وصف.",
     verified_pill:"✅ مزوّد موثّق", provider_default:"مزوّد الخدمة",
     call_btn:"📞 اتصل", wa_btn:"💬 تواصل عبر واتساب",
-    wa_listing_msg:"مرحبًا، أتواصل معك عبر Khedmain بخصوص: ",
+    wa_listing_msg:"مرحبًا، أتواصل معك عبر Khedma-In بخصوص: ",
     detail_safety:"🔒 من أجل سلامتك: قابِل الشخص في مكان آمن، تحقّق من العمل قبل الدفع، ولا تدفع عربونًا كبيرًا مقدّمًا أبدًا.",
     detail_notfound:"الإعلان غير موجود.", back_to_listings:"العودة إلى الإعلانات", detail_load_err:"تعذّر تحميل هذا الإعلان.",
     post_login_note:"سجّل الدخول لنشر إعلان. الأمر مجّاني وسريع.",
@@ -696,17 +696,17 @@ const I18N = {
     plan_month:"شهري", plan_year:"سنوي", plan_save:"شهران مجّانًا", act_no_code:"ليس لديّ كود بعد",
     tab_ccp:"🏤 البريد (CCP)", tab_d17:"💳 D17", flouci_num:"رقم Flouci", d17_num:"رقم بطاقة D17",
     d17_note:"💳 افتح تطبيق D17 (البريد) وأرسل المبلغ إلى هذا الرقم، ثم أرسل لقطة الشاشة عبر واتساب.",
-    official_account:"Khedmain — الحساب الرسمي",
+    official_account:"Khedma-In — الحساب الرسمي",
     copy_num:"📋 نسخ الرقم", ccp_account:"حساب CCP",
     ccp_note:"🏤 أودِع نقدًا في أيّ مكتب بريد بهذا الرقم، أو حوّل عبر CCP. احتفظ بالوصل.",
     ps1_t:"ادفع مبلغ خطتك", ps1_d:"شهري {m} أو سنوي {y}، عبر Flouci أو D17 أو البريد.",
     ps2_t:"أرسل الإثبات عبر واتساب", ps2_d:"لقطة شاشة من Flouci أو صورة الوصل، مع رقمك المسجّل.",
     ps3_t:"استلم كودك", ps3_d:"نتحقّق ونرسل لك الكود عبر واتساب، عادةً في أقل من ساعة.",
     ps4_t:"فعّله في الأعلى", ps4_d:"أدخل الكود في الخانة أعلى هذه الصفحة. تصبح إعلاناتك ظاهرة فورًا.",
-    send_proof:"💬 أرسل الإثبات", wa_proof_msg:"مرحبًا Khedmain، هذا إثبات دفعي لتفعيل اشتراكي. رقمي المسجّل: ",
+    send_proof:"💬 أرسل الإثبات", wa_proof_msg:"مرحبًا Khedma-In، هذا إثبات دفعي لتفعيل اشتراكي. رقمي المسجّل: ",
     copied:"✓ تم النسخ", enter_code:"أدخل الكود.", activating:"جارٍ التفعيل…", sub_activated_prefix:"تم تفعيل اشتراك", sub_activated_suffix:"✅",
     login_title:"تسجيل الدخول", register_title:"إنشاء حساب", login_sub:"ادخل إلى مساحة المزوّد الخاصة بك.",
-    register_sub:"انضمّ إلى Khedmain في دقيقة.", f_fullname:"الاسم الكامل", ph_fullname:"الاسم واللقب",
+    register_sub:"انضمّ إلى Khedma-In في دقيقة.", f_fullname:"الاسم الكامل", ph_fullname:"الاسم واللقب",
     f_phone2:"الهاتف", f_password:"كلمة السر", login_btn:"دخول", register_btn:"إنشاء حسابي",
     no_account:"ليس لديك حساب؟", register_link:"سجّل", have_account:"لديك حساب؟", login_link:"دخول",
     phone_invalid2:"رقم غير صالح (الصيغة +216 XX XXX XXX).", pass_short:"كلمة السر قصيرة جدًّا.", one_moment:"لحظة…",
@@ -720,7 +720,7 @@ const I18N = {
     dash_empty:"ليس لديك إعلان بعد. انشر واحدًا للبدء.", dash_load_err:"تعذّر تحميل مساحتك.",
     confirm_delete:"حذف هذا الإعلان؟", ad_deleted:"تم حذف الإعلان.",
     admin_denied:"الوصول مخصّص للمشرف.", admin_load:"جارٍ تحميل الإدارة…",
-    admin_title:"إدارة Khedmain", admin_sub:"المزوّدون، الإعلانات والأكواد مسبقة الدفع.",
+    admin_title:"إدارة Khedma-In", admin_sub:"المزوّدون، الإعلانات والأكواد مسبقة الدفع.",
     stat_providers:"المزوّدون", stat_listings:"الإعلانات", stat_free_codes:"أكواد متاحة", stat_used_codes:"أكواد مستعملة",
     tab_providers:"👤 المزوّدون", tab_listings:"📋 الإعلانات", tab_codes:"🎟️ الأكواد",
     no_providers:"لا يوجد مزوّدون.", load_err:"خطأ في التحميل.",
@@ -732,7 +732,7 @@ const I18N = {
     gen_codes:"توليد أكواد", f_plan:"الخطة", f_qty:"الكمية", generate:"توليد",
     free_codes:"أكواد متاحة", plan_word:"خطة", no_free_codes:"لا توجد أكواد متاحة. ولّد بعضها.", copy:"📋 نسخ",
     generating:"جارٍ التوليد…", codes_generated:"كود تم توليده.",
-    help_title:"كيف يعمل", help_sub:"Khedmain يربط التونسيين بمحترفين ومعدّات، بدون وسيط.",
+    help_title:"كيف يعمل", help_sub:"Khedma-In يربط التونسيين بمحترفين ومعدّات، بدون وسيط.",
     help_s1_t:"ابحث", help_s1_d:"صفِّ حسب الفئة والولاية والكلمة المفتاحية لتجد محترفًا أو معدّة قربك.",
     help_s2_t:"قارن", help_s2_d:"اطّلع على الصور والأسعار والأوصاف. اختر بكل ثقة.",
     help_s3_t:"تواصل", help_s3_d:"اتصل أو راسِل عبر واتساب مباشرة. بدون عمولة ولا رسوم على الزبون.",
@@ -740,9 +740,9 @@ const I18N = {
     help_prov_body:`أنشئ حسابك، انشر إعلانك بالصور والأسعار، ثم فعّل ظهورك بـ<strong>كود مسبق الدفع</strong> (Flouci أو البريد). بعد التفعيل، يظهر إعلانك في نتائج البحث بكل تونس. وتحتفظ بـ100% من مداخيلك.`,
     help_cta_publish:"أضف إعلان", help_cta_activate:"التفعيل بكود",
     cond_title:"الشروط والأمان", cond_updated:"آخر تحديث:",
-    cond_body:`<strong>1. دور Khedmain.</strong> Khedmain منصّة للتعارف والوساطة. لسنا طرفًا في الخدمات ولا مشغّلًا للمزوّدين. تُبرَم الاتفاقات والأسعار والأعمال مباشرة بين الزبون والمزوّد.
+    cond_body:`<strong>1. دور Khedma-In.</strong> Khedma-In منصّة للتعارف والوساطة. لسنا طرفًا في الخدمات ولا مشغّلًا للمزوّدين. تُبرَم الاتفاقات والأسعار والأعمال مباشرة بين الزبون والمزوّد.
 
-<strong>2. المسؤولية.</strong> لا تضمن Khedmain جودة الخدمات المعروضة ولا قانونيّتها ولا سلامتها. تحقّق دائمًا من الهوية والكفاءات قبل أيّ التزام.
+<strong>2. المسؤولية.</strong> لا تضمن Khedma-In جودة الخدمات المعروضة ولا قانونيّتها ولا سلامتها. تحقّق دائمًا من الهوية والكفاءات قبل أيّ التزام.
 
 <strong>3. الأمان.</strong> قابِل الشخص في مكان آمن، لا تدفع عربونًا كبيرًا مقدّمًا، واطلب وصلًا. أبلِغ عن أيّ تجاوز عبر واتساب.
 

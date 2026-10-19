@@ -1,7 +1,7 @@
 {
-  "name": "Khedmain — خدمات ومعدّات",
-  "short_name": "Khedmain",
-  "description": "Khedmain : la place de marché des métiers, services et engins en Tunisie.",
+  "name": "Khedma-In — خدمات ومعدّات",
+  "short_name": "Khedma-In",
+  "description": "Khedma-In : la place de marché des métiers, services et engins en Tunisie.",
   "id": "/",
   "start_url": "/",
   "scope": "/",
