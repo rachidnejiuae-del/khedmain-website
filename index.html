@@ -869,6 +869,11 @@ function normPhone(p){
   return d;
 }
 function waLink(text){ return `https://wa.me/${CFG.WHATSAPP}?text=${encodeURIComponent(text||'')}`; }
+// Record a contact-button tap (WhatsApp / call) for admin stats. Fire-and-forget; never blocks the link.
+window.trackContact = function(id, type){
+  if(ME && ME.isAdmin) return;            // don't count the admin's own taps
+  try{ apiFetch('/listings/'+id+'/contact', { method:'POST', body:{ type } }).catch(()=>{}); }catch(e){}
+};
 function placeholder(catId){
   const c = CAT_BY_ID[catId] || {icon:'📌'}; const veh = isVehicle(catId);
   const a = veh ? '#FFE3CE' : '#DCE8FB'; const b = veh ? '#FFB57F' : '#9EC0F2';
@@ -1286,8 +1291,8 @@ function viewListing({seg}){
                 <span class="meta-pill">🕑 ${timeAgo(l.createdAt)}</span>
               </div>
               <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
-                <a class="btn btn-primary btn-block" href="tel:${esc(phone)}">${t('call_btn')} ${esc(phone)}</a>
-                <a class="btn btn-wa btn-block" target="_blank" href="https://wa.me/${esc(phone.replace(/^\+/,''))}?text=${encodeURIComponent(t('wa_listing_msg')+l.title)}">${t('wa_btn')}</a>
+                <a class="btn btn-primary btn-block" href="tel:${esc(phone)}" onclick="trackContact('${id}','call')">${t('call_btn')} ${esc(phone)}</a>
+                <a class="btn btn-wa btn-block" target="_blank" href="https://wa.me/${esc(phone.replace(/^\+/,''))}?text=${encodeURIComponent(t('wa_listing_msg')+l.title)}" onclick="trackContact('${id}','wa')">${t('wa_btn')}</a>
               </div>
               <div class="notice blue" style="margin-top:16px;font-size:12.5px">${t('detail_safety')}</div>
             </div>
