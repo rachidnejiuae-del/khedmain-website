@@ -494,8 +494,6 @@ const CFG = {
   FLOUCI:   '+216 28 357 354',
   D17:      '5359 4036 4404 4861',   // D17 (La Poste) card number
   CCP:      '13130593',
-  PRICE_MONTH: '15 DT',
-  PRICE_YEAR:  '120 DT',
 };
 
 /* ---------- i18n (FR / AR) ----------------------------------------------- */
@@ -573,7 +571,9 @@ const I18N = {
     official_account:"Khedma-In — Compte officiel",
     copy_num:"📋 Copier le numéro", ccp_account:"Compte CCP",
     ccp_note:"🏤 Déposez des espèces dans n'importe quel bureau de poste avec ce numéro, ou faites un virement CCP. Gardez le reçu.",
-    ps1_t:"Payez le montant de votre plan", ps1_d:"Mensuel {m} ou annuel {y}, via Flouci, D17 ou CCP.",
+    ps1_t:"Choisissez votre abonnement", ps1_d:"Mensuel ou annuel, via Flouci, D17 ou CCP.",
+    act_sub_note:"🎁 Votre période d'essai est gratuite. À la fin de l'essai, activez un abonnement pour garder vos annonces visibles — demandez votre code et le tarif via WhatsApp.",
+    total_views:"Vues totales", views_word:"vues",
     ps2_t:"Envoyez la preuve sur WhatsApp", ps2_d:"Capture Flouci ou photo du reçu, avec votre numéro inscrit.",
     ps3_t:"Recevez votre code", ps3_d:"Nous vérifions et vous envoyons votre code par WhatsApp, généralement en moins d'une heure.",
     ps4_t:"Activez-le ci-dessus", ps4_d:"Entrez le code dans le champ en haut de cette page. Vos annonces passent en ligne aussitôt.",
@@ -699,7 +699,9 @@ const I18N = {
     official_account:"Khedma-In — الحساب الرسمي",
     copy_num:"📋 نسخ الرقم", ccp_account:"حساب CCP",
     ccp_note:"🏤 أودِع نقدًا في أيّ مكتب بريد بهذا الرقم، أو حوّل عبر CCP. احتفظ بالوصل.",
-    ps1_t:"ادفع مبلغ خطتك", ps1_d:"شهري {m} أو سنوي {y}، عبر Flouci أو D17 أو البريد.",
+    ps1_t:"اختر اشتراكك", ps1_d:"شهري أو سنوي، عبر Flouci أو D17 أو البريد.",
+    act_sub_note:"🎁 فترة التجربة متاعك مجّانية. في آخر التجربة، فعّل اشتراكك باش تبقى إعلاناتك ظاهرة — اطلب الكود والثمن عبر الواتساب.",
+    total_views:"إجمالي المشاهدات", views_word:"مشاهدة",
     ps2_t:"أرسل الإثبات عبر واتساب", ps2_d:"لقطة شاشة من Flouci أو صورة الوصل، مع رقمك المسجّل.",
     ps3_t:"استلم كودك", ps3_d:"نتحقّق ونرسل لك الكود عبر واتساب، عادةً في أقل من ساعة.",
     ps4_t:"فعّله في الأعلى", ps4_d:"أدخل الكود في الخانة أعلى هذه الصفحة. تصبح إعلاناتك ظاهرة فورًا.",
@@ -1441,10 +1443,7 @@ function viewActivate(){
         </div>
         ${!u ? `<div class="notice blue" style="margin-top:14px">${t('act_login_first')} <a href="#/login?next=/activate" style="font-weight:700">${t('login_arrow')}</a></div>`:''}
       </div>
-      <div class="plan-row" style="margin-top:30px">
-        <div class="plan"><div class="pname">${t('plan_month')}</div><div class="pprice">${CFG.PRICE_MONTH}</div></div>
-        <div class="plan" style="border-color:var(--blue)"><div class="pname">${t('plan_year')}</div><div class="pprice">${CFG.PRICE_YEAR}</div><div class="psave">${t('plan_save')}</div></div>
-      </div>
+      <div class="notice sun" style="margin-top:24px">${t('act_sub_note')}</div>
       <div class="form-card" style="max-width:none">
         <h3 style="font-size:17px;margin-bottom:14px">${t('act_no_code')}</h3>
         <div class="pay-methods">
@@ -1470,7 +1469,7 @@ function viewActivate(){
           <div class="notice sun" style="margin-top:14px">${t('ccp_note')}</div>
         </div>
         <div style="margin-top:22px">
-          <div class="pstep"><div class="pn">1</div><div><h3>${t('ps1_t')}</h3><p>${t('ps1_d').replace('{m}',CFG.PRICE_MONTH).replace('{y}',CFG.PRICE_YEAR)}</p></div></div>
+          <div class="pstep"><div class="pn">1</div><div><h3>${t('ps1_t')}</h3><p>${t('ps1_d')}</p></div></div>
           <div class="pstep"><div class="pn">2</div><div><h3>${t('ps2_t')}</h3><p>${t('ps2_d')}</p>
             <a class="btn btn-wa btn-sm" style="margin-top:10px" target="_blank" href="${waLink(t('wa_proof_msg'))}">${t('send_proof')}</a></div></div>
           <div class="pstep"><div class="pn">3</div><div><h3>${t('ps3_t')}</h3><p>${t('ps3_d')}</p></div></div>
@@ -1566,6 +1565,7 @@ function viewDashboard(){
   loading(t('loading'));
   apiFetch('/listings/mine', { auth:true }).then(d => {
     const mine = d.listings || []; const active = d.subActive;
+    const totalViews = mine.reduce((s,l)=>s+(l.views||0),0);
     // keep cached sub status roughly in sync
     if(active && (!ME.subUntil || ME.subUntil < now())){ /* server says active */ }
     // free-trial banner — only shown when relevant to this provider's state
@@ -1599,6 +1599,10 @@ function viewDashboard(){
             <div class="lab">${t('my_ads')}</div><div class="val">${mine.length}</div>
             <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${active?t('online_visible'):t('pending_activation')}</div>
           </div>
+          <div class="dash-card">
+            <div class="lab">👁 ${t('total_views')}</div><div class="val">${totalViews}</div>
+            <div style="color:var(--muted);font-size:13.5px;margin-top:4px">${t('views_word')}</div>
+          </div>
         </div>
         ${trialBanner}
         <h2 style="font-size:19px;margin-bottom:14px">${t('my_ads')}</h2>
@@ -1607,7 +1611,7 @@ function viewDashboard(){
             <div class="my-listing">
               <img src="${firstPhoto(l)}" alt=""/>
               <div class="ml-info"><div class="ml-title">${esc(l.title)}</div>
-                <div class="ml-meta">${esc(catName(l.category))} · 📍 ${esc(govDisplay(l.gov))} · ${l.price?esc(l.price)+' '+t('dt')+' '+esc(unitLabel(l.unit)):t('sur_devis')}</div></div>
+                <div class="ml-meta">${esc(catName(l.category))} · 📍 ${esc(govDisplay(l.gov))} · ${l.price?esc(l.price)+' '+t('dt')+' '+esc(unitLabel(l.unit)):t('sur_devis')} · 👁 ${l.views||0} ${t('views_word')}</div></div>
               <span class="badge ${active?'live':'pending'}">${active?t('badge_online'):t('badge_pending')}</span>
               <div style="display:flex;gap:6px">
                 <a href="#/listing/${l.id}" class="btn btn-ghost btn-sm">${t('view')}</a>
